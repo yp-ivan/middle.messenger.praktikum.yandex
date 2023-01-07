@@ -1,0 +1,18 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "Проект Messenger (практика Yandex.Praktikum).",
+  "main": "server.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yp-ivan/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "Ivan Gavrilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex#readme"
+}
