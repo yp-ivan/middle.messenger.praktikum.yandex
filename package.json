@@ -2,7 +2,6 @@
   "name": "messenger",
   "version": "1.0.0",
   "description": "Проект Messenger (практика Yandex.Praktikum).",
-  "main": "server.js",
   "scripts": {
     "serve": "node ./server.js",
     "dev": "parcel src/pages/index.hbs --no-cache",
