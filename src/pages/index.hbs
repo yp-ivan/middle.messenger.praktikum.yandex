@@ -1,7 +1,65 @@
 ---
-title: Index
+title: Чаты
+styles:
+- '../styles/page-chat.scss'
 ---
 
 {{!< main}}
 
-<div></div>
+<div class="hide">
+  <a href="./error-404.hbs"></a>
+  <a href="./error-500.hbs"></a>
+</div>
+
+<div class="fbox">
+
+  <aside class="chat__channels">
+
+    <div>
+      <div class="profile-link">
+        <a href="./profile.hbs">Профиль &rarr;</a>
+      </div>
+
+      <form class="form_channels-search">
+        <div class="form-group">
+          <input type="search" name="search" class="form-control_search" placeholder="Поиск" required>
+        </div>
+      </form>
+    </div>
+
+    <div class="channels-list">
+
+      <div class="channel-sep"></div>
+
+      {{#each channels}}
+        {{> 'channel-item/index'}}
+        <div class="channel-sep"></div>
+      {{/each}}
+
+    </div>
+
+  </aside>
+
+  <main class="chat__messages">
+
+    <div class="chat__profile">
+      <div class="avatar chat__profile__avatar"></div>
+      <div class="chat__profile__name">Вадим</div>
+    </div>
+
+    <div class="messages-list">
+      {{#each messages}}
+        {{> 'message-item/date-item'}}
+      {{/each}}
+    </div>
+
+    <div class="chat__send-message">
+      <form class="form_send-message">
+        <input type="text" name="message" class="form-control_message" placeholder="Сообщение">
+        <button type="submit" class="btn_send-message"></button>
+      </form>
+    </div>
+
+  </main>
+
+</div>
