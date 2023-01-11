@@ -22,7 +22,9 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@parcel/transformer-sass": "2.8.2",
-    "express": "4.18.2",
     "parcel": "2.8.2"
+  },
+  "dependencies": {
+    "express": "4.18.2"
   }
 }
