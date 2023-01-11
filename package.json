@@ -1,0 +1,30 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "Проект Messenger (практика Yandex.Praktikum).",
+  "scripts": {
+    "serve": "node ./server.js",
+    "dev": "parcel src/pages/index.hbs --no-cache",
+    "build": "parcel build src/pages/index.hbs --no-source-maps --public-url ./",
+    "start": "npm run build && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yp-ivan/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "Ivan Gavrilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/transformer-sass": "2.8.2",
+    "parcel": "2.8.2"
+  },
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}

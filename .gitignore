@@ -1,0 +1,12 @@
+# editor
+.idea
+
+# OS cache
+Thumbs.db
+.DS_Store
+
+# vendor, build, cache
+/node_modules
+/dist
+/static
+.parcel-cache
