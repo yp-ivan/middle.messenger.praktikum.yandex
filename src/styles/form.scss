@@ -37,34 +37,3 @@
     display: none;
   }
 }
-
-.btn {
-  display: inline-block;
-  padding: 0.5rem 0.75rem;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #212529;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  background-color: transparent;
-}
-
-.btn_primary {
-  color: var(--color-white);
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  &:hover {
-    color: var(--color-white);
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-  }
-  &:active {
-    background-color: #0a58ca;
-    border-color: #0a53be;
-  }
-}
