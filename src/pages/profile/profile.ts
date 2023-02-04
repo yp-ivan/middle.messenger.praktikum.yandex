@@ -10,7 +10,7 @@ export class ProfilePage extends Block {
 
         {{{Link text="" to="/index" className="profile__back"}}}
 
-        <main class="profile__div">
+        <main class="profile">
 
           <div class="profile-data">
 

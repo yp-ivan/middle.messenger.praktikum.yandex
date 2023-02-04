@@ -1,17 +1,28 @@
 import Block from 'core/Block';
+import { getFormValues, validateForm } from 'helpers/validate/validateForm';
 
 import './profile.scss';
 
 export class ProfileEditPage extends Block {
+  constructor() {
+    super();
+    this.setProps({
+      onSubmit: (e: FocusEvent) => {
+        e.preventDefault();
+        validateForm(this.refs);
+        getFormValues(this.refs, true);
+      }
+    });
+  }
+
   render() {
-    console.log(this.refs);
     // language=hbs
     return `
       <div class="fbox">
 
         {{{Link text="" to="/profile" className="profile__back"}}}
 
-        <main class="profile__div">
+        <main class="profile">
 
           <div class="profile-data">
 
@@ -30,6 +41,8 @@ export class ProfileEditPage extends Block {
                     type="email"
                     value="pochta@yandex.ru"
                     required=true
+                    validateRule="email"
+                    ref="emailInput"
                 }}}
                 {{{InputWrap
                     name="login"
@@ -37,36 +50,50 @@ export class ProfileEditPage extends Block {
                     type="text"
                     value="ivanivanov"
                     required=true
+                    validateRule="login"
+                    ref="loginInput"
                 }}}
                 {{{InputWrap
                     name="first_name"
                     label="Имя"
                     type="text"
                     value="Иван"
+                    validateRule="firstName"
+                    ref="firstNameInput"
                 }}}
                 {{{InputWrap
                     name="second_name"
                     label="Фамилия"
                     type="text"
                     value="Иванов"
+                    validateRule="secondName"
+                    ref="secondNameInput"
                 }}}
                 {{{InputWrap
                     name="nick"
                     label="Имя в чате"
                     type="text"
                     value="Иван"
+                    ref="nickInput"
                 }}}
                 {{{InputWrap
-                    name="+7 (909) 967 30 30"
+                    name="phone"
                     label="Телефон"
                     type="tel"
-                    value="Иванов"
+                    value="+7 (909) 967 30 30"
+                    validateRule="phone"
+                    ref="phoneInput"
                 }}}
 
               </div>
 
               <div class="form-group form-group_btns">
-                {{{Button className="btn_primary w-100" type="submit" text="Сохранить"}}}
+                {{{Button
+                    className="btn_primary w-100"
+                    type="submit"
+                    text="Сохранить"
+                    onClick=onSubmit
+                }}}
               </div>
 
             </form>

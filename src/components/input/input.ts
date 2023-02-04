@@ -2,7 +2,7 @@ import Block from 'core/Block';
 
 import './input.scss';
 
-interface InputProps {
+export interface InputProps {
   onInput?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;

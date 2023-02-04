@@ -1,11 +1,15 @@
 import Block from 'core/Block';
 
+import { ValidateType } from 'helpers/validate/validateType';
+import { validateControl } from 'helpers/validate/validateForm';
+
 import './inputWrap.scss';
 
 interface InputWrapProps {
   onInput?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  validateRule: ValidateType,
   type?: 'text' | 'password' | 'email' | 'tel';
   name: string;
   value?: string;
@@ -17,15 +21,30 @@ interface InputWrapProps {
 export class InputWrap extends Block {
   static componentName = 'InputWrap';
 
-  constructor({ onInput, onBlur, onFocus, type = 'text', ...props }: InputWrapProps) {
+  constructor({ ...props }: InputWrapProps) {
     super({
-      type,
       ...props,
-      events: {
-        input: onInput,
-        blur: onBlur,
-        focus: onFocus
+      onInput: (e: FocusEvent) => {
+        this.validate(e);
+      },
+      onBlur: (e: FocusEvent) => {
+        this.validate(e);
+      },
+      onFocus: (e: FocusEvent) => {
+        this.validate(e, false);
       }
+    });
+  }
+
+  validate(e: FocusEvent, checkEmpty = true) {
+    const { value } = e.target as HTMLInputElement;
+    if (!value && !checkEmpty) return;
+    const rule = this.props.validateRule;
+    if (rule === undefined) return;
+    const error = validateControl([{ rule, value }]);
+    this.refs.errorRef.setProps({
+      text: error,
+      submitted: false
     });
   }
 
@@ -34,7 +53,7 @@ export class InputWrap extends Block {
     return `
       <div class="form-group">
         {{#if label}}
-          <label for="" class="form-label">{{label}}</label>
+          <label class="form-label">{{label}}</label>
         {{/if}}
         {{{Input
             type=type
@@ -46,8 +65,9 @@ export class InputWrap extends Block {
             onInput=onInput
             onFocus=onFocus
             onBlur=onBlur
+            ref="inputRef"
         }}}
-        {{{InputError text=error}}}
+        {{{InputError ref="errorRef" text=error}}}
       </div>
     `;
   }

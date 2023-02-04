@@ -7,7 +7,7 @@ body {
   font: 0.75rem/1.2 Tahoma, Arial, sans-serif;
   font-weight: 400;
   color: var(--color-text);
-  background: var(--color-white);
+  background: var(--color-bg);
 }
 
 .container {
@@ -67,13 +67,4 @@ body {
 }
 .pb-0 {
   padding-bottom: 0;
-}
-
-.avatar {
-  border-radius: 50%;
-  background-color: #efefef;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
 }

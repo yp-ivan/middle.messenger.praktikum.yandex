@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 310px;
   min-width: 310px;
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--border-color);
   background-color: #fbfbfb;
 }
 
@@ -59,7 +59,7 @@
   gap: 10px;
   height: 54px;
   padding: 10px 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border-color);
 
   &__avatar {
     width: 34px;
@@ -76,7 +76,7 @@
   display: flex;
   height: 54px;
   padding: 10px 0;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border-color);
 
   .form_send-message {
     display: flex;
