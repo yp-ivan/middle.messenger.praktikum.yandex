@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss"
+  ],
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "color-hex-case": "lower",
+    "alpha-value-notation": "number",
+    "color-function-notation": "modern",
+    "at-rule-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "selector-class-pattern": null,
+    "no-empty-source": null
+  },
+  "ignoreFiles": [
+    "dist/*",
+    "static/*",
+    "src/styles/vendor/*"
+  ]
+}
