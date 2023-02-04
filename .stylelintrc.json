@@ -18,6 +18,7 @@
   "ignoreFiles": [
     "dist/*",
     "static/*",
+    "node_modules/*",
     "src/styles/vendor/*"
   ]
 }
