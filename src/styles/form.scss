@@ -28,12 +28,3 @@
     color: #ff2f2f;
   }
 }
-
-.form-error {
-  margin-top: 0.2rem;
-  font-size: 0.65em;
-  color: #ff2f2f;
-  &:empty {
-    display: none;
-  }
-}

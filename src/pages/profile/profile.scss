@@ -1,7 +1,7 @@
 .profile__back {
   display: flex;
   width: 65px;
-  background: url("../assets/ico-arrow.svg") center no-repeat #fbfbfb;
+  background: url("../../assets/ico-arrow.svg") center no-repeat #fbfbfb;
   border-right: 1px solid var(--border-color);
   cursor: pointer;
 
@@ -28,7 +28,7 @@
   width: 130px;
   height: 130px;
   margin: 0 auto 20px;
-  background-image: url("../assets/avatar.svg");
+  background-image: url("../../assets/avatar.svg");
   background-size: auto;
 }
 
