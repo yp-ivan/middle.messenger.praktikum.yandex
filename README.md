@@ -17,6 +17,10 @@
 - `npm run build` — создание продакшн-сборки
 - `npm run start` — создание продакшн-сборки и запуск Express-сервера
 
+### Deploy on Netlify
+
+https://63bc67269891990008f2378c--charming-griffin-ba0b27.netlify.app
+
 ### Полный список страниц
 
 - `/index.html` - корневая со списком чатов
