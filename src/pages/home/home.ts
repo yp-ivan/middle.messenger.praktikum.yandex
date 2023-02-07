@@ -1,6 +1,8 @@
 import { renderDOM } from 'core';
 import Block from 'core/Block';
 
+import './home.scss';
+
 import LoginPage from 'pages/login';
 import RegisterPage from 'pages/register';
 import Error404Page from 'pages/error404';
@@ -51,21 +53,22 @@ export class HomePage extends Block {
     // language=hbs
     return `
       {{#Modal title="Навигация по страницам" }}
-        {{{Button text="Авторизация" className="btn_primary w-100" link="/login" onClick=openLoginPage}}}
-        <br><br>
-        {{{Button text="Регистрация" className="btn_primary w-100" link="/register" onClick=openRegisterPage}}}
-        <br><br><hr><br>
-        {{{Button text="Чат" className="btn_primary w-100" link="/chat" onClick=openChatPage}}}
-        <br><br><hr><br>
-        {{{Button text="Профиль пользователя" className="btn_primary w-100" link="/profile" onClick=openProfilePage}}}
-        <br><br>
-        {{{Button text="Редактирование профиля" className="btn_primary w-100" link="/profile" onClick=openProfileEditPage}}}
-        <br><br>
-        {{{Button text="Изменение профиля" className="btn_primary w-100" link="/profile" onClick=openProfileEditPassPage}}}
-        <br><br><hr><br>
-        {{{Button text="Ошибка 404" className="btn_primary w-100" link="/error404" onClick=openError404Page}}}
-        <br><br>
-        {{{Button text="Ошибка 500" className="btn_primary w-100" link="/error500" onClick=openError500Page}}}
+        <nav class="nav-pages">
+            <ul class="nav-pages__list">
+                <li>{{{Button text="Авторизация" className="btn_primary w-100" link="/login" onClick=openLoginPage}}}</li>
+                <li>{{{Button text="Регистрация" className="btn_primary w-100" link="/register" onClick=openRegisterPage}}}</li>
+            </ul>
+            <ul class="nav-pages__list">
+                <li>{{{Button text="Чат" className="btn_primary w-100" link="/chat" onClick=openChatPage}}}</li>
+                <li>{{{Button text="Профиль пользователя" className="btn_primary w-100" link="/profile" onClick=openProfilePage}}}</li>
+                <li>{{{Button text="Редактирование профиля" className="btn_primary w-100" link="/profile" onClick=openProfileEditPage}}}</li>
+                <li>{{{Button text="Изменение профиля" className="btn_primary w-100" link="/profile" onClick=openProfileEditPassPage}}}</li>
+            </ul>
+            <ul class="nav-pages__list">
+                <li>{{{Button text="Ошибка 404" className="btn_primary w-100" link="/error404" onClick=openError404Page}}}</li>
+                <li>{{{Button text="Ошибка 500" className="btn_primary w-100" link="/error500" onClick=openError500Page}}}</li>
+            </ul>
+        </nav>
       {{/Modal}}
     `;
   }
