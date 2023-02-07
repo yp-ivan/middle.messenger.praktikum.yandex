@@ -1,4 +1,4 @@
-export type ValidateType = 'login' | 'password' | 'email' | 'phone' | 'firstName' | 'secondName' | 'nick';
+export type ValidateType = 'login' | 'password' | 'email' | 'phone' | 'firstName' | 'secondName';
 
 export const ValidateRegex = {
   login: /^[a-zA-Z\d-_]{3,20}$/,

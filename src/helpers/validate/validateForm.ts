@@ -16,7 +16,8 @@ function getType(obj: Record<string, string | RegExp>, type: ValidateType) {
 export function validateControl(rules: ValidateItem[]): Undefined<string> {
   for (let i = 0; i < rules.length; i++) {
     const { rule, value } = rules[i];
-    if (!(getType(ValidateRegex, rule) as RegExp).test(value)) {
+    const ruleType = getType(ValidateRegex, rule);
+    if (ruleType !== undefined && !(ruleType as RegExp).test(value)) {
       return (getType(errorsTexts, rule) as string);
     }
   }

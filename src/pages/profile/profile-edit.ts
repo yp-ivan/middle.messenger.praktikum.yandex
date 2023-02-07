@@ -70,7 +70,7 @@ export class ProfileEditPage extends Block {
                     ref="secondNameInput"
                 }}}
                 {{{InputWrap
-                    name="nick"
+                    name="display_name"
                     label="Имя в чате"
                     type="text"
                     value="Иван"
