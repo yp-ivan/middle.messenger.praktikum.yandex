@@ -7,7 +7,7 @@ interface ErrorBoxProps {
   text: string;
 }
 
-export class ErrorBox extends Block {
+export class ErrorBox extends Block<ErrorBoxProps> {
   static componentName = 'ErrorBox';
 
   constructor({ code, text }: ErrorBoxProps) {

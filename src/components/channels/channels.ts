@@ -11,7 +11,7 @@ interface ChannelsProps {
   className?: string;
 }
 
-export class Channels extends Block {
+export class Channels extends Block<ChannelsProps> {
   static componentName = 'Channels';
 
   constructor(props: ChannelsProps) {

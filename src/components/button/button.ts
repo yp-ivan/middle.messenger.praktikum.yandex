@@ -2,16 +2,25 @@ import Block from 'core/Block';
 
 import './button.scss';
 
-type ButtonTypes = 'button' | 'submit' | 'reset';
+type ButtonType = 'button' | 'submit' | 'reset';
 
-interface ButtonProps {
+interface ButtonBaseProps {
   text: string;
   className?: string;
-  type: ButtonTypes,
-  onClick: () => void;
+  type: ButtonType;
 }
 
-export class Button extends Block {
+interface ButtonProps extends ButtonBaseProps {
+  onClick?: FuncProp
+}
+
+interface ButtonSuperProps extends ButtonBaseProps {
+  events: {
+    click?: FuncProp
+  }
+}
+
+export class Button extends Block<ButtonProps> {
   static componentName = 'Button';
 
   constructor({ text, className, type, onClick }: ButtonProps) {
@@ -22,7 +31,7 @@ export class Button extends Block {
       events: {
         click: onClick
       }
-    });
+    } as ButtonSuperProps);
   }
 
   protected render(): string {

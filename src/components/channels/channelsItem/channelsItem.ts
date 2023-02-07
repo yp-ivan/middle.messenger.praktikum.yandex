@@ -11,7 +11,7 @@ export interface ChannelsItemProps {
   active?: boolean;
 }
 
-export class ChannelsItem extends Block {
+export class ChannelsItem extends Block<ChannelsItemProps> {
   static componentName = 'ChannelsItem';
 
   constructor(props: ChannelsItemProps) {

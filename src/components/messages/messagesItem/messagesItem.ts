@@ -8,7 +8,7 @@ export interface MessagesItemProps {
   time: string;
 }
 
-export class MessagesItem extends Block {
+export class MessagesItem extends Block<MessagesItemProps> {
   static componentName = 'MessagesItem';
 
   constructor(props: MessagesItemProps) {

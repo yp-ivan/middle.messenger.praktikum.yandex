@@ -2,13 +2,22 @@ import Block from 'core/Block';
 
 import './link.scss';
 
-interface LinkProps {
+interface LinkBaseProps {
   text: string;
   to: string;
   className?: string;
 }
 
-export class Link extends Block {
+interface LinkProps extends LinkBaseProps {
+  onClick?: FuncProp
+}
+interface LinkSuperProps extends LinkBaseProps {
+  events: {
+    click?: FuncProp
+  }
+}
+
+export class Link extends Block<LinkProps> {
   static componentName = 'Link';
 
   constructor(props: LinkProps) {
@@ -23,7 +32,7 @@ export class Link extends Block {
       events: {
         click: onClick
       }
-    });
+    } as LinkSuperProps);
   }
 
   render() {

@@ -7,7 +7,7 @@ export interface ProfileDataItemProps {
   value: string;
 }
 
-export class ProfileDataItem extends Block {
+export class ProfileDataItem extends Block<ProfileDataItemProps> {
   static componentName = 'ProfileDataItem';
 
   render() {

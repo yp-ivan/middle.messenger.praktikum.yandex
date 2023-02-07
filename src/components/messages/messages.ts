@@ -11,7 +11,7 @@ interface MessagesProps {
   className?: string;
 }
 
-export class Messages extends Block {
+export class Messages extends Block<MessagesProps> {
   static componentName = 'Messages';
 
   constructor(props: MessagesProps) {

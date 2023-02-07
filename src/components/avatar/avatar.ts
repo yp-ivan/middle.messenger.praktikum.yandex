@@ -7,7 +7,7 @@ interface AvatarProps {
   className?: string;
 }
 
-export class Avatar extends Block {
+export class Avatar extends Block<AvatarProps> {
   static componentName = 'Avatar';
 
   constructor(props: AvatarProps) {

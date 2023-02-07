@@ -9,7 +9,7 @@ interface BlockMeta<P = any> {
 type Events = Values<typeof Block.EVENTS>;
 type EventFunc = Record<string, () => void>;
 
-export default class Block<P = any> {
+export default class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -61,7 +61,7 @@ export default class Block<P = any> {
     this._element = this._createDocumentElement('div');
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(props: Undefined<P>): void {
     this.state = {};
   }
 
@@ -138,7 +138,7 @@ export default class Block<P = any> {
     return this.element!;
   }
 
-  _makePropsProxy(props: any): any {
+  _makePropsProxy(props: Undefined<P>): any {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     // eslint-disable-next-line @typescript-eslint/no-this-alias

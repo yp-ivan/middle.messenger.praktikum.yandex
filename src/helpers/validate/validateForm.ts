@@ -13,7 +13,7 @@ function getType(obj: Record<string, string | RegExp>, type: ValidateType) {
     .flat()[1];
 }
 
-export function validateControl(rules: ValidateItem[]): Undefined<string> {
+export function validateControl(rules: ValidateItem[]): unknown | string {
   for (let i = 0; i < rules.length; i++) {
     const { rule, value } = rules[i];
     const ruleType = getType(ValidateRegex, rule);
@@ -23,7 +23,7 @@ export function validateControl(rules: ValidateItem[]): Undefined<string> {
   }
 }
 
-export function validateForm(refs: { [key: string]: Block<{}> }) {
+export function validateForm(refs: { [key: string]: Block }) {
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
       const { value }: { value: string } = ref[1].refs.inputRef.getContent() as HTMLInputElement;
@@ -37,7 +37,7 @@ export function validateForm(refs: { [key: string]: Block<{}> }) {
 }
 
 export function getFormValues(refs, printConsole = false) {
-  const values: any = [];
+  const values: Array<Record<string, any>> = [];
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
       const { name }: { name: string } = ref[1].props;

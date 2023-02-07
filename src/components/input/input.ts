@@ -2,11 +2,10 @@ import Block from 'core/Block';
 
 import './input.scss';
 
-export interface InputProps {
-  onInput?: () => void;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  type?: 'text' | 'password' | 'email' | 'tel';
+export type InputType = 'text' | 'password' | 'email' | 'tel';
+
+interface InputBaseProps {
+  type?: InputType;
   name: string;
   value?: string;
   placeholder?: string;
@@ -14,7 +13,21 @@ export interface InputProps {
   disabled?: boolean;
 }
 
-export class Input extends Block {
+interface InputProps extends InputBaseProps {
+  onInput?: FuncProp;
+  onBlur?: FuncProp;
+  onFocus?: FuncProp;
+}
+
+interface InputSuperProps extends InputBaseProps {
+  events: {
+    input?: FuncProp;
+    blur?: FuncProp;
+    focus?: FuncProp;
+  }
+}
+
+export class Input extends Block<InputProps> {
   static componentName = 'Input';
 
   constructor({ onInput, onBlur, onFocus, type = 'text', ...props }: InputProps) {
@@ -26,7 +39,7 @@ export class Input extends Block {
         blur: onBlur,
         focus: onFocus
       }
-    });
+    } as InputSuperProps);
   }
 
   protected render(): string {

@@ -2,15 +2,16 @@ import Block from 'core/Block';
 
 import { ValidateType } from 'helpers/validate/validateType';
 import { validateControl } from 'helpers/validate/validateForm';
+import { InputType } from '../input';
 
 import './inputWrap.scss';
 
 interface InputWrapProps {
-  onInput?: () => void;
-  onBlur?: () => void;
-  onFocus?: () => void;
+  onInput?: (e: FocusEvent) => void;
+  onBlur?: (e: FocusEvent) => void;
+  onFocus?: (e: FocusEvent) => void;
   validateRule: ValidateType,
-  type?: 'text' | 'password' | 'email' | 'tel';
+  type?: InputType;
   name: string;
   value?: string;
   placeholder?: string;
@@ -18,7 +19,7 @@ interface InputWrapProps {
   disabled?: boolean;
 }
 
-export class InputWrap extends Block {
+export class InputWrap extends Block<InputWrapProps> {
   static componentName = 'InputWrap';
 
   constructor({ ...props }: InputWrapProps) {
