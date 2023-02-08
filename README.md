@@ -5,29 +5,25 @@
 #### 1 спринт
 Использование Parcel, Sass, Express для реализации статики.
 
+#### 2 спринт
+Разбиение на компоненты (js-модули) из статичной верстки. Использование TypeScript.
+
 ## Дизайн
 
 [Макет в Figma](https://www.figma.com/file/RyCIabsvFXGjxt9MkMcJdj/Messenger-Yandex.Praktikum)
 
-## Установка
+## Скрипты
 
 - `npm install` — установка node-пакетов
-- `npm run serve` — запуск Express-сервера
 - `npm run dev` — создание сборки для разработки
 - `npm run build` — создание продакшн-сборки
 - `npm run start` — создание продакшн-сборки и запуск Express-сервера
 
+## Тесты кода
+
+- `npm run lint` — запуск ESLint
+- `npm run stylelint` — запуск StyleLint
+
 ### Deploy on Netlify
 
-https://63bc67269891990008f2378c--charming-griffin-ba0b27.netlify.app
-
-### Полный список страниц
-
-- `/index.html` - корневая со списком чатов
-- `/profile.html` - профиль пользователя
-- `/profile-edit.html` - форма редактирование данных пользователя
-- `/profile-password.html` - форма изменения пароля пользователя
-- `/user-login.html` - авторизация пользователя
-- `/user-register.html` - регистрация пользователя
-- `/error-404.html` - ошибка 404
-- `/error-500.html` - ошибка 500
+https://charming-griffin-ba0b27.netlify.app/
