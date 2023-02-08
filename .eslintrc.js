@@ -1,0 +1,48 @@
+module.exports = {
+  env: {
+    es6: true,
+    browser: true,
+    node: true
+  },
+  extends: [
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb-base',
+    'airbnb-typescript/base'
+  ],
+  parser: '@typescript-eslint/parser',
+  ignorePatterns: [
+    '**/*.json',
+    'dist/**',
+    'static/**',
+    'node_modules/**'
+  ],
+  parserOptions: {
+    ecmaVersion: '2017',
+    sourceType: 'module',
+    project: ['./tsconfig.json']
+  },
+  plugins: [
+    'import',
+    '@typescript-eslint'
+  ],
+  rules: {
+    'no-debugger': 'off',
+    'no-console': 0,
+    'linebreak-style': 0,
+    'max-len': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/comma-dangle': ['error', 'never'],
+    '@typescript-eslint/quotes': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    'class-methods-use-this': 'off',
+    'import/prefer-default-export': 'off',
+    'no-restricted-exports': 'off',
+    'object-curly-newline': 'off',
+    'no-underscore-dangle': 'off',
+    'import/first': 'off',
+    'no-plusplus': 'off'
+  }
+}

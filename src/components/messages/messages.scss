@@ -1,0 +1,18 @@
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  margin-right: -20px;
+  padding-right: 20px;
+}
+
+.chat-date {
+  margin-bottom: 30px;
+  align-self: center;
+  color: var(--color-gray);
+
+  .chat-message + & {
+    margin-top: 30px;
+  }
+}
