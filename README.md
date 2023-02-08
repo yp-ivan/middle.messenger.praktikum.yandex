@@ -26,4 +26,4 @@
 
 ### Deploy on Netlify
 
-https://63ded21b8132500009eb1699--charming-griffin-ba0b27.netlify.app
+https://charming-griffin-ba0b27.netlify.app/
