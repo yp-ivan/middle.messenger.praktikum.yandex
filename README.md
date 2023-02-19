@@ -8,6 +8,9 @@
 #### 2 спринт
 Разбиение на компоненты (js-модули) из статичной верстки. Использование TypeScript.
 
+#### 3 спринт
+Добавление роутинга, запросов к API. Использование WebSocket. Защита от XSS и DOS.
+
 ## Дизайн
 
 [Макет в Figma](https://www.figma.com/file/RyCIabsvFXGjxt9MkMcJdj/Messenger-Yandex.Praktikum)
