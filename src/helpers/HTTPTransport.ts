@@ -1,4 +1,4 @@
-enum METHODS {
+export enum METHODS {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -8,7 +8,7 @@ enum METHODS {
 type KeyValueString = Record<string, string>;
 
 type Options = {
-  method?: METHODS;
+  method: METHODS;
   headers?: KeyValueString;
   data?: Document | XMLHttpRequestBodyInit | null;
   timeout?: number;
@@ -23,9 +23,12 @@ class HTTPTransport {
 
   delete = (url: string, options = {}) => this.request(url, { ...options, method: METHODS.DELETE });
 
-  qs(data?: KeyValueString) {
+  qs(data?: KeyValueString | null) {
     if (typeof data !== 'object') {
       throw new Error('Data must be object');
+    }
+    if (data === null) {
+      return '';
     }
     const keys = Object.keys(data);
     return keys.reduce((result, key: string, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
@@ -33,16 +36,19 @@ class HTTPTransport {
 
   request = (url: string, options: Options) => {
     const {
-      method = METHODS.GET,
+      method,
       headers = {},
-      data,
+      data = null,
       timeout = 5000
     } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      const fullUrl = url + (method === METHODS.GET) ? this.qs(data as unknown as KeyValueString) : '';
+      let fullUrl = url;
+      if (method === METHODS.GET) {
+        fullUrl += this.qs(data as unknown as KeyValueString);
+      }
 
       xhr.open(method, fullUrl);
 
@@ -69,7 +75,11 @@ class HTTPTransport {
       if (method === METHODS.GET) {
         xhr.send();
       } else {
-        xhr.send(data);
+        if (headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
+          xhr.send(JSON.stringify(data));
+        } else {
+          xhr.send(data);
+        }
       }
     });
   };
