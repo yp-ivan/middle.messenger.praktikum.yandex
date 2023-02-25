@@ -5,7 +5,33 @@ declare global {
   export type Keys<T extends Record<string, unknown>> = keyof T;
   export type Values<T extends Record<string, unknown>> = T[Keys<T>];
 
+  export type Indexed = { [key: string]: any };
+
   export type FuncProp = () => void;
+
+  export type AppState = {
+    appIsInited: boolean;
+    page: Pages | null;
+    isLoading: boolean;
+    user: User | null;
+  };
+
+  export type User = {
+    id: number;
+    login: string;
+    firstName: string;
+    secondName: string;
+    displayName: string;
+    avatar: string;
+    phone: string;
+    email: string;
+  };
+
+  interface Window {
+    store: Store<AppState>;
+    router: CoreRouter;
+  }
+
 }
 
 export {};

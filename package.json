@@ -11,12 +11,16 @@
     "stylelint": "npx stylelint src/**/*.scss"
   },
   "alias": {
-    "core": "./src/core",
+    "assets": "./src/assets",
+    "api": "./src/api",
     "components": "./src/components",
+    "core": "./src/core",
+    "data": "./src/data",
     "helpers": "./src/helpers",
     "pages": "./src/pages",
-    "data": "./src/data",
-    "assets": "./src/assets"
+    "router": "./src/router",
+    "services": "./src/services",
+    "store": "./src/store"
   },
   "repository": {
     "type": "git",
