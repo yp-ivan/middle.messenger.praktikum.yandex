@@ -2,6 +2,9 @@ import Block from 'core/Block';
 import { getFormValues, validateForm } from 'helpers/validate/validateForm';
 
 export class RegisterPage extends Block {
+
+  static componentName = 'Регистрация';
+
   constructor() {
     super();
     this.setProps({
@@ -83,7 +86,7 @@ export class RegisterPage extends Block {
             }}}
           </div>
           <div class="form-group text-center">
-            {{{Link text="Войти" to="/login"}}}
+            {{{Link text="Войти" to=""}}}
           </div>
         </form>
       {{/Modal}}

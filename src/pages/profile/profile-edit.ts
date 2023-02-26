@@ -4,6 +4,9 @@ import { getFormValues, validateForm } from 'helpers/validate/validateForm';
 import './profile.scss';
 
 export class ProfileEditPage extends Block {
+
+  static componentName = 'Редактирование профиля';
+
   constructor() {
     super();
     this.setProps({
@@ -20,7 +23,7 @@ export class ProfileEditPage extends Block {
     return `
       <div class="fbox">
 
-        {{{Link text="" to="/profile" className="profile__back"}}}
+        {{{Link text="" to="settings" className="profile__back"}}}
 
         <main class="profile">
 

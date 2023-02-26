@@ -43,7 +43,7 @@ export class LoginPage extends Block {
             }}}
           </div>
           <div class="form-group text-center">
-            {{{Link text="Нет аккаунта?" to="/register"}}}
+            {{{Link text="Нет аккаунта?" to="sign-up"}}}
           </div>
         </form>
       {{/Modal}}

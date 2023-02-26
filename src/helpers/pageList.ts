@@ -13,7 +13,7 @@ export enum Pages {
   Register = 'register',
   Profile = 'profile',
   ProfileEdit = 'profile-edit',
-  ProfilePasswordEdit = 'profile-password-edit',
+  ProfilePasswordEdit = 'profile-password',
   Chat = 'chat',
   Error404 = 'error404',
   Error500 = 'error500',

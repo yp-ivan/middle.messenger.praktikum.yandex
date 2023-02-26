@@ -3,6 +3,8 @@ import Block from 'core/Block';
 import './chat.scss';
 
 export class ChatPage extends Block {
+
+  static componentName = 'Чат';
   render() {
     // language=hbs
     return `
@@ -12,7 +14,7 @@ export class ChatPage extends Block {
 
           <div>
             <div class="profile-link">
-              {{{Link text="Профиль →" to="/profile"}}}
+              {{{Link text="Профиль →" to="settings"}}}
             </div>
 
             <form class="form_channels-search">

@@ -22,7 +22,7 @@ export class MapPage extends Block {
                 <li>{{{Link text="Чат" to="messenger"}}}</li>
                 <li>{{{Link text="Профиль пользователя" to="settings"}}}</li>
                 <li>{{{Link text="Редактирование профиля" to="settings-edit"}}}</li>
-                <li>{{{Link text="Изменение пароля" to="settings-password-edit"}}}</li>
+                <li>{{{Link text="Изменение пароля" to="settings-password"}}}</li>
             </ul>
             <ul class="nav-pages__list">
                 <li>{{{Link text="Ошибка 404" to="error-404"}}}</li>
