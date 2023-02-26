@@ -2,7 +2,7 @@ import Block from 'core/Block';
 
 import './chat.scss';
 
-export class Chat extends Block {
+export class ChatPage extends Block {
   render() {
     // language=hbs
     return `

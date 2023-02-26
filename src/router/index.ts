@@ -1,28 +1,6 @@
 import { Store, renderDOM, CoreRouter } from 'core';
 import { getPageComponent, Pages } from 'helpers';
-
-const routes = [
-  {
-    path: 'onboarding',
-    block: Pages.Onboarding,
-    shouldAuthorized: false,
-  },
-  {
-    path: 'login',
-    block: Pages.Login,
-    shouldAuthorized: false,
-  },
-  {
-    path: 'profile',
-    block: Pages.Profile,
-    shouldAuthorized: true,
-  },
-  {
-    path: '*',
-    block: Pages.Onboarding,
-    shouldAuthorized: false,
-  },
-];
+import { routes } from './routes';
 
 export function initRouter(router: CoreRouter, store: Store<AppState>) {
   routes.forEach(route => {
@@ -36,7 +14,7 @@ export function initRouter(router: CoreRouter, store: Store<AppState>) {
       }
 
       if (!currentPage) {
-        store.dispatch({ page: Pages.Onboarding });
+        store.dispatch({ page: Pages.Map });
       }
     });
   });
