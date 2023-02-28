@@ -6,6 +6,11 @@ type ValidateItem = {
   value: string;
 };
 
+export type FormValue = {
+  name: string;
+  value: any;
+};
+
 function getType(obj: Record<string, string | RegExp>, type: ValidateType) {
   return Object
     .entries(obj)
@@ -24,7 +29,7 @@ export function validateControl(rules: ValidateItem[]): unknown | string {
 }
 
 export function validateForm(refs: { [key: string]: Block }) {
-  let hasError = false;
+  let isValid = true;
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
       const { value }: { value: string } = ref[1].refs.inputRef.getContent() as HTMLInputElement;
@@ -34,15 +39,15 @@ export function validateForm(refs: { [key: string]: Block }) {
         text: error
       });
       if (error) {
-        hasError = true;
+        isValid = false;
       }
     }
   });
-  return hasError;
+  return isValid;
 }
 
-export function getFormValues(refs, printConsole = false) {
-  const values: Array<Record<string, any>> = [];
+export function getFormValues(refs, printConsole = true) {
+  const values: FormValue[] = [];
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
       const { name }: { name: string } = ref[1].props;
@@ -50,7 +55,7 @@ export function getFormValues(refs, printConsole = false) {
       values.push({ name, value });
     }
   });
-  if (printConsole && values.length) {
+  if (printConsole) {
     // Выводим в консоль содержимое полей формы (согласно чек-листу)
     console.log('formValues', values);
   }

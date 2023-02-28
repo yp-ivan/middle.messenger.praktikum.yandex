@@ -14,6 +14,7 @@ declare global {
     page: Pages | null;
     isLoading: boolean;
     user: User | null;
+    formErrors: Record<string, string>;
   };
 
   export type User = {

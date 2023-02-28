@@ -13,13 +13,18 @@ export const register = async (
   const response = await authAPI.register(action);
 
   if (apiHasError(response)) {
-    dispatch({ isLoading: false });
+    dispatch({
+      isLoading: false,
+      formErrors: {
+        'register': response.reason
+      }
+    });
     return;
   }
 
   const responseUser = await authAPI.getUser();
 
-  dispatch({ isLoading: false });
+  dispatch({ isLoading: false, formErrors: {} });
 
   if (apiHasError(response)) {
     dispatch(logout);
@@ -28,7 +33,7 @@ export const register = async (
 
   dispatch({ user: transformUser(responseUser as UserDTO) });
 
-  window.router.go('login');
+  window.router.go('settings');
 };
 
 export const login = async (
@@ -41,13 +46,18 @@ export const login = async (
   const response = await authAPI.login(action);
 
   if (apiHasError(response)) {
-    dispatch({ isLoading: false });
+    dispatch({
+      isLoading: false,
+      formErrors: {
+        'login': response.reason
+      }
+    });
     return;
   }
 
   const responseUser = await authAPI.getUser();
 
-  dispatch({ isLoading: false });
+  dispatch({ isLoading: false, formErrors: {} });
 
   if (apiHasError(response)) {
     dispatch(logout);
@@ -56,7 +66,7 @@ export const login = async (
 
   dispatch({ user: transformUser(responseUser as UserDTO) });
 
-  window.router.go('profile');
+  window.router.go('settings');
 };
 
 export const logout = async (dispatch: Dispatch<AppState>) => {
@@ -66,5 +76,5 @@ export const logout = async (dispatch: Dispatch<AppState>) => {
 
   dispatch({ isLoading: false, user: null });
 
-  window.router.go('login');
+  window.router.go('');
 };
