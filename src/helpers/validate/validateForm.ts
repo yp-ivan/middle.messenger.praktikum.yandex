@@ -24,6 +24,7 @@ export function validateControl(rules: ValidateItem[]): unknown | string {
 }
 
 export function validateForm(refs: { [key: string]: Block }) {
+  let hasError = false;
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
       const { value }: { value: string } = ref[1].refs.inputRef.getContent() as HTMLInputElement;
@@ -32,8 +33,12 @@ export function validateForm(refs: { [key: string]: Block }) {
       ref[1].refs.errorRef.setProps({
         text: error
       });
+      if (error) {
+        hasError = true;
+      }
     }
   });
+  return hasError;
 }
 
 export function getFormValues(refs, printConsole = false) {

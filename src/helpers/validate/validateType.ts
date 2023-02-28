@@ -1,6 +1,7 @@
-export type ValidateType = 'login' | 'password' | 'email' | 'phone' | 'firstName' | 'secondName';
+export type ValidateType = 'notEmpty' | 'login' | 'password' | 'email' | 'phone' | 'firstName' | 'secondName';
 
 export const ValidateRegex = {
+  notEmpty: /.+/,
   login: /^[a-zA-Z\d-_]{3,20}$/,
   password: /(?=^.{8,40}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
   email: /^\S+@\S+\.\S+$/,
@@ -10,6 +11,7 @@ export const ValidateRegex = {
 };
 
 export const errorsTexts = {
+  notEmpty: 'Поле не может быть пустым',
   login: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)',
   password: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
   email: 'Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собачка» и точка после неё, но перед точкой обязательно должны быть буквы',
