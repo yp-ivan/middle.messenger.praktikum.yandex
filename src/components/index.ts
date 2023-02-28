@@ -1,4 +1,5 @@
 export { default as ErrorBox } from './errorBox';
+export { default as Error } from './error';
 export { default as Modal } from './modal';
 export { default as Link } from './link';
 export { default as Button } from './button';

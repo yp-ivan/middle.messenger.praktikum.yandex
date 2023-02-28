@@ -28,3 +28,19 @@
     border-color: #0a53be;
   }
 }
+
+.btn_link {
+  padding: 0;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  vertical-align: baseline;
+  color: #0d6efd;
+  &.color-red {
+    color: var(--color-red);
+  }
+  &:hover {
+    color: #094bb0;
+  }
+}
