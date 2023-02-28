@@ -56,6 +56,8 @@ class HTTPTransport {
         xhr.timeout = timeout;
       }
 
+      xhr.withCredentials = true;
+
       Object.keys(headers).forEach((header) => {
         xhr.setRequestHeader(header, headers[header]);
       });
@@ -65,17 +67,13 @@ class HTTPTransport {
       xhr.ontimeout = reject;
 
       xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          reject(xhr);
-        } else {
-          resolve(xhr);
-        }
+        resolve(xhr);
       };
 
       if (method === METHODS.GET) {
         xhr.send();
       } else {
-        if (headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
+        if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
           xhr.send(JSON.stringify(data));
         } else {
           xhr.send(data);

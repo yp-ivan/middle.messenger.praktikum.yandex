@@ -20,7 +20,7 @@ export function request<T extends any>({
       if (isJson) {
         return JSON.parse(response.responseText);
       }
-      if (response.responseText.length) {
+      if (response.responseText.length && response.responseText !== 'OK') {
         return { reason: response.responseText };
       }
       return {};
