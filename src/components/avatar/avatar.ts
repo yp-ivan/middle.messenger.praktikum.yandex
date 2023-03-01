@@ -10,6 +10,8 @@ interface AvatarProps {
 export class Avatar extends Block<AvatarProps> {
   static componentName = 'Avatar';
 
+  static baseUrl = 'https://ya-praktikum.tech/api/v2/resources';
+
   constructor(props: AvatarProps) {
     super({
       ...props
@@ -18,6 +20,10 @@ export class Avatar extends Block<AvatarProps> {
 
   render() {
     // language=hbs
-    return `<div class="avatar {{className}}" {{#if url}}style="background-image: url('{{url}}')"{{/if}}></div>`;
+    return `
+      <div class="avatar {{className}}"
+           {{#if url}}style="background-image: url('${Avatar.baseUrl}{{url}}')"{{/if}}
+      ></div>
+    `;
   }
 }
