@@ -17,7 +17,7 @@ export const update = async (
     dispatch({
       isLoading: false,
       formErrors: {
-        'updateProfile': response.reason
+        updateProfile: response.reason
       }
     });
     return;
@@ -43,7 +43,7 @@ export const updatePassword = async (
     dispatch({
       isLoading: false,
       formErrors: {
-        'updatePassword': response.reason
+        updatePassword: response.reason
       }
     });
     return;
@@ -67,7 +67,7 @@ export const updateAvatar = async (
     dispatch({
       isLoading: false,
       formErrors: {
-        'updateAvatar': response.reason
+        updateAvatar: response.reason
       }
     });
     return;

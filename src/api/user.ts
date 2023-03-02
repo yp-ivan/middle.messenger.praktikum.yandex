@@ -2,12 +2,12 @@ import { request } from 'core/apiRequest';
 import { ErrorAPI, UserDTO } from './types';
 
 export type UpdateProfileRequestData = {
-  'first_name': 'string';
-  'second_name': 'string';
-  'display_name': 'string';
-  'login': 'string';
-  'email': 'string';
-  'phone': 'string';
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
 }
 
 export type UpdatePasswordRequestData = {
@@ -16,7 +16,7 @@ export type UpdatePasswordRequestData = {
 };
 
 export type SearchRequestData = {
-  'login': 'string';
+  login: string;
 }
 
 export const userAPI = {

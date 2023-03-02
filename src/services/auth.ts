@@ -16,7 +16,7 @@ export const register = async (
     dispatch({
       isLoading: false,
       formErrors: {
-        'register': response.reason
+        register: response.reason
       }
     });
     return;
@@ -49,7 +49,7 @@ export const login = async (
     dispatch({
       isLoading: false,
       formErrors: {
-        'login': response.reason
+        login: response.reason
       }
     });
     return;
