@@ -1,12 +1,33 @@
-import Block from 'core/Block';
+import { Block, CoreRouter, Store } from 'core';
+import { withRouter, withStore } from 'helpers';
+import { logout } from 'services/auth';
 
 import './profile.scss';
 
-export class ProfilePage extends Block {
+type ProfilePageProps = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  onLogout: (e: Event) => void;
+};
+
+export class ProfilePage extends Block<ProfilePageProps> {
 
   static componentName = 'Профиль';
 
+  constructor(props: ProfilePageProps) {
+    super(props);
+    this.setProps({
+      onLogout: (e: Event) => {
+        e.preventDefault();
+        this.props.store.dispatch(logout, {});
+      }
+    });
+  };
+
   render() {
+    const user = this.props.store.getState().user;
+    const displayName = user?.displayName || `${user?.firstName} ${user?.secondName}`;
+
     // language=hbs
     return `
       <div class="fbox">
@@ -17,23 +38,25 @@ export class ProfilePage extends Block {
 
           <div class="profile-data">
 
-            {{{Avatar url="" className="profile-avatar"}}}
+            <div class="profile-avatar">
+              {{{Avatar url="${user?.avatar || ''}"}}}
+            </div>
 
-            <h2 class="profile-name">Иван</h2>
+            <h2 class="profile-name">${displayName}</h2>
 
             <div class="profile-list">
-              {{{ProfileDataItem title="Почта" value="pochta@yandex.ru"}}}
-              {{{ProfileDataItem title="Логин" value="ivanivanov"}}}
-              {{{ProfileDataItem title="Имя" value="Иван"}}}
-              {{{ProfileDataItem title="Фамилия" value="Иванов"}}}
-              {{{ProfileDataItem title="Имя в чате" value="Иван"}}}
-              {{{ProfileDataItem title="Телефон" value="+7 (909) 967 30 30"}}}
+              {{{ProfileDataItem title="Почта" value="${user?.email}"}}}
+              {{{ProfileDataItem title="Логин" value="${user?.login}"}}}
+              {{{ProfileDataItem title="Имя" value="${user?.firstName}"}}}
+              {{{ProfileDataItem title="Фамилия" value="${user?.secondName}"}}}
+              {{{ProfileDataItem title="Имя в чате" value="${displayName}"}}}
+              {{{ProfileDataItem title="Телефон" value="${user?.phone}"}}}
             </div>
 
             <ul class="profile-links">
               <li>{{{Link text="Изменить данные" to="settings-edit"}}}</li>
               <li>{{{Link text="Изменить пароль" to="settings-password"}}}</li>
-              <li>{{{Link text="Выйти" to="" className="color-red"}}}</li>
+              <li>{{{Button text="Выйти" type="button" className="btn_link color-red" onClick=onLogout}}}</li>
             </ul>
 
           </div>
@@ -44,3 +67,5 @@ export class ProfilePage extends Block {
     `;
   }
 }
+
+export default withRouter(withStore(ProfilePage));

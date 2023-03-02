@@ -61,3 +61,13 @@ export function getFormValues(refs, printConsole = true) {
   }
   return values;
 }
+
+export function getFormKeyValues(values: FormValue[]): Indexed {
+  const keyValues: Indexed = {};
+  values.forEach(item => {
+    if (keyValues[item.name] === undefined) {
+      keyValues[item.name] = item.value;
+    }
+  });
+  return keyValues;
+}
