@@ -1,6 +1,6 @@
 require('babel-core/register');
 
-import { registerComponent, HashRouter, Store } from 'core';
+import { registerComponent, PathRouter, Store } from 'core';
 import { initApp } from 'services/initApp';
 import { defaultState } from 'store';
 import { initRouter } from 'router';
@@ -15,7 +15,7 @@ Object.values(components).forEach((Component: any) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const store = new Store<AppState>(defaultState);
-  const router = new HashRouter();
+  const router = new PathRouter();
 
   /**
    * Помещаем роутер и стор в глобальную область для доступа в хоках with*
