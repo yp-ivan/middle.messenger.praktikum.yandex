@@ -9,12 +9,12 @@ export type LoginRequestData = {
 type LoginResponseData = {} | ErrorAPI;
 
 export type RegisterRequestData = {
-  'first_name': 'string',
-  'second_name': 'string',
-  'login': 'string',
-  'email': 'string',
-  'password': 'string',
-  'phone': 'string'
+  first_name: string,
+  second_name: string,
+  login: string,
+  email: string,
+  password: string,
+  phone: string
 }
 
 type RegisterResponseData = { id: number } | ErrorAPI;
