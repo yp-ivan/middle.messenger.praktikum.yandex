@@ -26,7 +26,7 @@ export const register = async (
 
   dispatch({ isLoading: false, formErrors: {} });
 
-  if (apiHasError(response)) {
+  if (apiHasError(responseUser)) {
     dispatch(logout);
     return;
   }
@@ -59,7 +59,7 @@ export const login = async (
 
   dispatch({ isLoading: false, formErrors: {} });
 
-  if (apiHasError(response)) {
+  if (apiHasError(responseUser)) {
     dispatch(logout);
     return;
   }

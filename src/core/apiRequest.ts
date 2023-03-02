@@ -3,6 +3,7 @@ import HTTPTransport, { METHODS } from 'helpers/HTTPTransport';
 export function request<T extends any>({
   method,
   path,
+  headers,
   data,
 }: any): Promise<T> {
 
@@ -10,7 +11,7 @@ export function request<T extends any>({
     `${process.env.API_ENDPOINT}/${path}`,
     {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: headers ? headers : { 'Content-Type': 'application/json' },
       data
     }
   )
@@ -30,10 +31,10 @@ export function request<T extends any>({
     })
 }
 
-request.get = <T>(path: string) => request<T>({ method: METHODS.GET, path });
+request.get = <T>(path: string, headers?: any) => request<T>({ method: METHODS.GET, path, headers });
 
-request.post = <T>(path: string, data?: any) => request<T>({ method: METHODS.POST, path, data });
+request.post = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.POST, path, data, headers });
 
-request.put = <T>(path: string, data?: any) => request<T>({ method: METHODS.PUT, path, data });
+request.put = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.PUT, path, data, headers });
 
-request.delete = <T>(path: string, data?: any) => request<T>({ method: METHODS.DELETE, path, data });
+request.delete = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.DELETE, path, data, headers });
