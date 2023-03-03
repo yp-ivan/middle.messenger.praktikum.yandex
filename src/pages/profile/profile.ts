@@ -26,7 +26,6 @@ export class ProfilePage extends Block<ProfilePageProps> {
 
   render() {
     const user = this.props.store.getState().user;
-    const displayName = user?.displayName || `${user?.firstName} ${user?.secondName}`;
 
     // language=hbs
     return `
@@ -42,14 +41,14 @@ export class ProfilePage extends Block<ProfilePageProps> {
               {{{Avatar url="${user?.avatar || ''}"}}}
             </div>
 
-            <h2 class="profile-name">${displayName}</h2>
+            <h2 class="profile-name">${user?.displayName}</h2>
 
             <div class="profile-list">
               {{{ProfileDataItem title="Почта" value="${user?.email}"}}}
               {{{ProfileDataItem title="Логин" value="${user?.login}"}}}
               {{{ProfileDataItem title="Имя" value="${user?.firstName}"}}}
               {{{ProfileDataItem title="Фамилия" value="${user?.secondName}"}}}
-              {{{ProfileDataItem title="Имя в чате" value="${displayName}"}}}
+              {{{ProfileDataItem title="Имя в чате" value="${user?.displayName}"}}}
               {{{ProfileDataItem title="Телефон" value="${user?.phone}"}}}
             </div>
 
