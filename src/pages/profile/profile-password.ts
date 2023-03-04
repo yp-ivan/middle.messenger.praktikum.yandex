@@ -79,7 +79,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
             <form>
 
               <div class="profile-avatar">
-                {{{Avatar url="${user?.avatar || ''}"}}}
+                {{{Avatar url="${user?.avatar}"}}}
               </div>
 
               {{{Error value=formError}}}

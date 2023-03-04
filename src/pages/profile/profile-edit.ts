@@ -101,7 +101,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
 
             <form>
               <div class="profile-avatar">
-                {{{Avatar url="${user?.avatar || ''}"}}}
+                {{{Avatar url="${user?.avatar}"}}}
                 {{{InputWrap
                     name="avatar"
                     label="Поменять аватар"

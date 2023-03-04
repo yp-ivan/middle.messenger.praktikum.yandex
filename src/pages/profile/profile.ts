@@ -38,7 +38,7 @@ export class ProfilePage extends Block<ProfilePageProps> {
           <div class="profile-data">
 
             <div class="profile-avatar">
-              {{{Avatar url="${user?.avatar || ''}"}}}
+              {{{Avatar url="${user?.avatar}"}}}
             </div>
 
             <h2 class="profile-name">${user?.displayName}</h2>
