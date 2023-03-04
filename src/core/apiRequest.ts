@@ -31,10 +31,10 @@ export function request<T extends any>({
     })
 }
 
-request.get = <T>(path: string, headers?: any) => request<T>({ method: METHODS.GET, path, headers });
+request.get = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.GET, path, headers, data });
 
-request.post = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.POST, path, data, headers });
+request.post = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.POST, path, headers, data });
 
-request.put = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.PUT, path, data, headers });
+request.put = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.PUT, path, headers, data });
 
-request.delete = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.DELETE, path, data, headers });
+request.delete = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.DELETE, path, headers, data });
