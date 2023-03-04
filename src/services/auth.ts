@@ -33,7 +33,7 @@ export const register = async (
 
   dispatch({ user: transformUser(responseUser as UserDTO) });
 
-  window.router.go('settings');
+  window.router.go('messenger');
 };
 
 export const login = async (
@@ -66,7 +66,7 @@ export const login = async (
 
   dispatch({ user: transformUser(responseUser as UserDTO) });
 
-  window.router.go('settings');
+  window.router.go('messenger');
 };
 
 export const logout = async (dispatch: Dispatch<AppState>) => {

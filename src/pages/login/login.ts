@@ -1,8 +1,8 @@
 import { Block, CoreRouter, Store } from 'core';
-import { getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
 import { withRouter, withStore } from 'helpers';
 import { login } from 'services/auth';
-import {LoginRequestData} from "api/auth";
+import { LoginRequestData } from 'api/auth';
 
 type LoginPageProps = {
   router: CoreRouter;
@@ -22,12 +22,12 @@ export class LoginPage extends Block<LoginPageProps> {
       onLogin: (e: Event) => {
         e.preventDefault();
         const isValid = validateForm(this.refs);
-        const formValues = getFormValues(this.refs);
+        const values = getFormKeyValues(getFormValues(this.refs));
 
         if (isValid) {
           const loginData: LoginRequestData = {
-            login: formValues.find(item => item.name === 'login')?.value,
-            password: formValues.find(item => item.name === 'password')?.value
+            login: values.login || '',
+            password: values.password || ''
           };
           const nextState = {
             values: loginData,
@@ -63,7 +63,7 @@ export class LoginPage extends Block<LoginPageProps> {
               value="${values.login}"
               type="text"
               required=true
-              validateRule="login"
+              validateRule="notEmpty"
               ref="loginInput"
           }}}
           {{{InputWrap
@@ -71,7 +71,7 @@ export class LoginPage extends Block<LoginPageProps> {
               label="Пароль"
               type="password"
               required=true
-              validateRule="password"
+              validateRule="notEmpty"
               ref="passwordInput"
           }}}
           <div class="form-group form-group_btns">

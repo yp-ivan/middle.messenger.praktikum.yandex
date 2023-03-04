@@ -1,5 +1,5 @@
 import { Block, CoreRouter, Store } from 'core';
-import { getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
 import { withRouter, withStore } from 'helpers';
 import { register } from 'services/auth';
 import { RegisterRequestData } from 'api/auth';
@@ -22,16 +22,16 @@ export class RegisterPage extends Block<RegisterPageProps> {
       onRegister: (e: Event) => {
         e.preventDefault();
         const isValid = validateForm(this.refs);
-        const values = getFormValues(this.refs);
+        const values = getFormKeyValues(getFormValues(this.refs));
 
         if (isValid) {
           const registerData: RegisterRequestData = {
-            email: values.find(item => item.name === 'email')?.value,
-            login: values.find(item => item.name === 'login')?.value,
-            first_name: values.find(item => item.name === 'first_name')?.value,
-            second_name: values.find(item => item.name === 'second_name')?.value,
-            phone: values.find(item => item.name === 'phone')?.value,
-            password: values.find(item => item.name === 'password')?.value
+            email: values.email || '',
+            login: values.login || '',
+            first_name: values.first_name || '',
+            second_name: values.second_name || '',
+            phone: values.phone || '',
+            password: values.password || '',
           };
 
           const nextState = {

@@ -91,7 +91,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
                     type="password"
                     value=""
                     required=true
-                    validateRule="password"
+                    validateRule="notEmpty"
                     ref="oldPasswordInput"
                 }}}
                 {{{InputWrap
