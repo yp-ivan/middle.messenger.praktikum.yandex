@@ -7,8 +7,8 @@ export type UserDTO = {
   login: string;
   first_name: string;
   second_name: string;
-  display_name: string;
-  avatar: string;
+  display_name: string | null;
+  avatar: string | null;
   phone: string;
   email: string;
 };
