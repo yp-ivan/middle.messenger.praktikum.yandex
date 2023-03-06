@@ -13,6 +13,9 @@ declare global {
     appIsInited: boolean;
     page: Pages | null;
     user: User | null;
+    chats: Chat[];
+    chatSelected: number;
+    chatMessages: ChatMessage[];
     formErrors: Record<string, string>;
   };
 
@@ -26,6 +29,29 @@ declare global {
     phone: string;
     email: string;
   };
+
+  export type Chat = {
+    id: number;
+    title: string;
+    avatar: string;
+    createdBy: number;
+    unreadCount: number;
+    lastMessage: {
+      user: User;
+      time: string;
+      content: string;
+    } | null;
+  }
+
+  export type ChatMessage = {
+    id: number;
+    userId: number;
+    chatId: number;
+    time: string;
+    type: 'message' | 'file';
+    content: string;
+    file?: string;
+  }
 
   interface Window {
     store: Store<AppState>;
