@@ -12,7 +12,6 @@ declare global {
   export type AppState = {
     appIsInited: boolean;
     page: Pages | null;
-    isLoading: boolean;
     user: User | null;
     formErrors: Record<string, string>;
   };

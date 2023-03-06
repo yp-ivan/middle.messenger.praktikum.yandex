@@ -9,13 +9,10 @@ export const update = async (
   state: AppState,
   action: UpdateProfileRequestData,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await userAPI.update(action);
 
   if (apiHasError(response)) {
     dispatch({
-      isLoading: false,
       formErrors: {
         updateProfile: response.reason
       }
@@ -25,7 +22,7 @@ export const update = async (
 
   await updateUserData(dispatch);
 
-  dispatch({ isLoading: false, formErrors: {} });
+  dispatch({ formErrors: {} });
 
   window.router.go('settings');
 };
@@ -35,13 +32,10 @@ export const updatePassword = async (
   state: AppState,
   action: UpdatePasswordRequestData,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await userAPI.updatePassword(action);
 
   if (apiHasError(response)) {
     dispatch({
-      isLoading: false,
       formErrors: {
         updatePassword: response.reason
       }
@@ -49,7 +43,7 @@ export const updatePassword = async (
     return;
   }
 
-  dispatch({ isLoading: false, formErrors: {} });
+  dispatch({ formErrors: {} });
 
   window.router.go('settings');
 };
@@ -59,13 +53,10 @@ export const updateAvatar = async (
   state: AppState,
   action: FormData,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await userAPI.updateAvatar(action);
 
   if (apiHasError(response)) {
     dispatch({
-      isLoading: false,
       formErrors: {
         updateAvatar: response.reason
       }
@@ -75,7 +66,7 @@ export const updateAvatar = async (
 
   await updateUserData(dispatch);
 
-  dispatch({ isLoading: false, formErrors: {} });
+  dispatch({ formErrors: {} });
 
   window.router.go('settings');
 };

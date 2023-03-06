@@ -8,13 +8,10 @@ export const register = async (
   state: AppState,
   action: RegisterRequestData,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await authAPI.register(action);
 
   if (apiHasError(response)) {
     dispatch({
-      isLoading: false,
       formErrors: {
         register: response.reason
       }
@@ -24,7 +21,7 @@ export const register = async (
 
   const responseUser = await authAPI.getUser();
 
-  dispatch({ isLoading: false, formErrors: {} });
+  dispatch({ formErrors: {} });
 
   if (apiHasError(responseUser)) {
     dispatch(logout);
@@ -41,13 +38,10 @@ export const login = async (
   state: AppState,
   action: LoginRequestData,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await authAPI.login(action);
 
   if (apiHasError(response)) {
     dispatch({
-      isLoading: false,
       formErrors: {
         login: response.reason
       }
@@ -57,7 +51,7 @@ export const login = async (
 
   const responseUser = await authAPI.getUser();
 
-  dispatch({ isLoading: false, formErrors: {} });
+  dispatch({ formErrors: {} });
 
   if (apiHasError(responseUser)) {
     dispatch(logout);
@@ -70,11 +64,9 @@ export const login = async (
 };
 
 export const logout = async (dispatch: Dispatch<AppState>) => {
-  dispatch({ isLoading: true });
-
   await authAPI.logout();
 
-  dispatch({ isLoading: false, user: null });
+  dispatch({ user: null });
 
   window.router.go('');
 };
