@@ -1,8 +1,11 @@
 import { BlockClass, Store } from 'core';
+import isEqual from 'helpers/utils/isEqual';
 
 type WithStateProps = { store: Store<AppState> };
 
-export function withStore<P extends WithStateProps>(WrappedBlock: BlockClass<P>) {
+type mapStateToProps<S> = (state: AppState) => S;
+
+export function withStore<P extends WithStateProps, S = any>(WrappedBlock: BlockClass<P>, mapStateToProps?: mapStateToProps<S>) {
   // @ts-expect-error No base constructor has the specified
   return class extends WrappedBlock<P> {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
@@ -11,12 +14,20 @@ export function withStore<P extends WithStateProps>(WrappedBlock: BlockClass<P>)
       super({ ...props, store: window.store });
     }
 
-    __onChangeStoreCallback = () => {
-      /**
-       * TODO: проверить что стор реально обновлен
-       * и прокидывать не целый стор, а необходимые поля
-       * с помощью метода mapStateToProps
-       */
+    __onChangeStoreCallback = (prev: AppState, next: AppState) => {
+
+      if (typeof mapStateToProps === 'function') {
+        const prevPropsFromState = mapStateToProps(prev);
+        const nextPropsFromState = mapStateToProps(next);
+
+        if (isEqual(prevPropsFromState, nextPropsFromState)) {
+          return;
+        }
+
+        // @ts-expect-error this is not typed
+        this.setProps(nextPropsFromState);
+      }
+
       // @ts-expect-error this is not typed
       this.setProps({ ...this.props, store: window.store });
     }
