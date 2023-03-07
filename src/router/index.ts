@@ -7,8 +7,11 @@ export function initRouter(router: CoreRouter, store: Store<AppState>) {
     router.use(route.path, () => {
       const isAuthorized = Boolean(store.getState().user);
       const currentPage = Boolean(store.getState().page);
+      const { shouldAuthorized, shouldGuest } = route
 
-      if (isAuthorized || !route.shouldAuthorized) {
+      if ((isAuthorized && shouldAuthorized)
+        || (!isAuthorized && shouldGuest)
+        || (!shouldGuest && !shouldAuthorized)) {
         store.dispatch({ page: route.block });
         return;
       }
