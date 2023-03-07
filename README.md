@@ -29,4 +29,4 @@
 
 ### Deploy on Netlify
 
-https://charming-griffin-ba0b27.netlify.app/
+https://yp-ivan-messenger.netlify.app/
