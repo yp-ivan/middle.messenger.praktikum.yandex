@@ -1,5 +1,5 @@
 import { Block, CoreRouter, Store } from 'core';
-import { withRouter, withStore } from 'helpers';
+import { withUser, withRouter, withStore } from 'helpers';
 import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
 import { UpdatePasswordRequestData } from 'api/user';
 import { updatePassword } from 'services/user';
@@ -9,6 +9,7 @@ import './profile.scss';
 type ProfilePasswordPageProps = {
   router: CoreRouter;
   store: Store<AppState>;
+  user: User;
   onSubmit: (e: Event) => void;
   formError: () => string;
 };
@@ -63,7 +64,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
   }
 
   render() {
-    const { user } = this.props.store.getState();
+    const { user } = this.props;
 
     // language=hbs
     return `
@@ -78,7 +79,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
             <form>
 
               <div class="profile-avatar">
-                {{{Avatar url="${user?.avatar}"}}}
+                {{{Avatar url="${user.avatar}"}}}
               </div>
 
               {{{Error value=formError}}}
@@ -133,4 +134,4 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
   }
 }
 
-export default withRouter(withStore(ProfilePasswordPage));
+export default withUser(withRouter(withStore(ProfilePasswordPage)));

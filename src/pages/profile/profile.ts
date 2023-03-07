@@ -1,5 +1,5 @@
 import { Block, CoreRouter, Store } from 'core';
-import { withRouter, withStore } from 'helpers';
+import { withUser, withRouter, withStore } from 'helpers';
 import { logout } from 'services/auth';
 
 import './profile.scss';
@@ -7,6 +7,7 @@ import './profile.scss';
 type ProfilePageProps = {
   router: CoreRouter;
   store: Store<AppState>;
+  user: User;
   onLogout: (e: Event) => void;
 };
 
@@ -24,7 +25,7 @@ export class ProfilePage extends Block<ProfilePageProps> {
   }
 
   render() {
-    const { user } = this.props.store.getState();
+    const { user } = this.props;
 
     // language=hbs
     return `
@@ -37,18 +38,18 @@ export class ProfilePage extends Block<ProfilePageProps> {
           <div class="profile-data">
 
             <div class="profile-avatar">
-              {{{Avatar url="${user?.avatar}"}}}
+              {{{Avatar url="${user.avatar}"}}}
             </div>
 
-            <h2 class="profile-name">${user?.displayName}</h2>
+            <h2 class="profile-name">${user.displayName}</h2>
 
             <div class="profile-list">
-              {{{ProfileDataItem title="Почта" value="${user?.email}"}}}
-              {{{ProfileDataItem title="Логин" value="${user?.login}"}}}
-              {{{ProfileDataItem title="Имя" value="${user?.firstName}"}}}
-              {{{ProfileDataItem title="Фамилия" value="${user?.secondName}"}}}
-              {{{ProfileDataItem title="Имя в чате" value="${user?.displayName}"}}}
-              {{{ProfileDataItem title="Телефон" value="${user?.phone}"}}}
+              {{{ProfileDataItem title="Почта" value="${user.email}"}}}
+              {{{ProfileDataItem title="Логин" value="${user.login}"}}}
+              {{{ProfileDataItem title="Имя" value="${user.firstName}"}}}
+              {{{ProfileDataItem title="Фамилия" value="${user.secondName}"}}}
+              {{{ProfileDataItem title="Имя в чате" value="${user.displayName}"}}}
+              {{{ProfileDataItem title="Телефон" value="${user.phone}"}}}
             </div>
 
             <ul class="profile-links">
@@ -66,4 +67,4 @@ export class ProfilePage extends Block<ProfilePageProps> {
   }
 }
 
-export default withRouter(withStore(ProfilePage));
+export default withUser(withRouter(withStore(ProfilePage)));

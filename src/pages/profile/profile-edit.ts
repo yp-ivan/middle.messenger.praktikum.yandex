@@ -1,5 +1,5 @@
 import { Block, CoreRouter, Store } from 'core';
-import { withRouter, withStore } from 'helpers';
+import { withUser, withRouter, withStore } from 'helpers';
 import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
 import { UpdateProfileRequestData } from 'api/user';
 import { update, updateAvatar } from 'services/user';
@@ -9,6 +9,7 @@ import './profile.scss';
 type ProfileEditPageProps = {
   router: CoreRouter;
   store: Store<AppState>;
+  user: User;
   onUpdate: (e: Event) => void;
   onUpdateAvatar?: (e: Event) => void;
   formError: () => string;
@@ -57,15 +58,15 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       }
     });
 
-    const { user } = this.props.store.getState();
+    const { user } = this.props;
     const nextState = {
       values: {
-        email: user?.email,
-        login: user?.login,
-        first_name: user?.firstName,
-        second_name: user?.secondName,
-        display_name: user?.displayName,
-        phone: user?.phone
+        email: user.email,
+        login: user.login,
+        first_name: user.firstName,
+        second_name: user.secondName,
+        display_name: user.displayName,
+        phone: user.phone
       }
     };
     this.setState(nextState);
@@ -85,7 +86,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
   }
 
   render() {
-    const { user } = this.props.store.getState();
+    const { user } = this.props;
     const { values } = this.state;
 
     // language=hbs
@@ -100,7 +101,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
 
             <form>
               <div class="profile-avatar">
-                {{{Avatar url="${user?.avatar}"}}}
+                {{{Avatar url="${user.avatar}"}}}
                 {{{InputWrap
                     name="avatar"
                     label="Поменять аватар"
@@ -154,7 +155,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
                     name="display_name"
                     label="Имя в чате"
                     type="text"
-                    value="${values.display_name || ''}"
+                    value="${values.display_name}"
                     required=true
                     validateRule="notEmpty"
                     ref="displayNameInput"
@@ -190,4 +191,4 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
   }
 }
 
-export default withRouter(withStore(ProfileEditPage));
+export default withUser(withRouter(withStore(ProfileEditPage)));
