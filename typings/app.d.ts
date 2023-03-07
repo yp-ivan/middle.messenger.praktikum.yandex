@@ -7,8 +7,6 @@ declare global {
 
   export type Indexed = { [key: string]: any };
 
-  export type FuncProp = () => void;
-
   export type AppState = {
     appIsInited: boolean;
     page: Pages | null;

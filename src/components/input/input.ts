@@ -16,18 +16,18 @@ interface InputBaseProps {
 }
 
 interface InputProps extends InputBaseProps {
-  onInput?: FuncProp;
-  onBlur?: FuncProp;
-  onFocus?: FuncProp;
-  onChange?: FuncProp;
+  onInput?: (e: Event) => void;
+  onBlur?: (e: Event) => void;
+  onFocus?: (e: Event) => void;
+  onChange?: (e: Event) => void;
 }
 
 interface InputSuperProps extends InputBaseProps {
   events: {
-    input?: FuncProp;
-    blur?: FuncProp;
-    focus?: FuncProp;
-    change?: FuncProp;
+    input?: (e: Event) => void;
+    blur?: (e: Event) => void;
+    focus?: (e: Event) => void;
+    change?: (e: Event) => void;
   }
 }
 

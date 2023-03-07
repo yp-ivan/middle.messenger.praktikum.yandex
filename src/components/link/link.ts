@@ -12,11 +12,11 @@ interface LinkBaseProps {
 }
 
 interface LinkProps extends LinkBaseProps {
-  onClick?: FuncProp
+  onClick?: (e: Event) => void;
 }
 interface LinkSuperProps extends LinkBaseProps {
   events: {
-    click?: FuncProp
+    click?: (e: Event) => void;
   }
 }
 
@@ -24,7 +24,7 @@ class Link extends Block<LinkProps> {
   static componentName = 'Link';
 
   constructor(props: LinkProps) {
-    const onClick = (e: MouseEvent) => {
+    const onClick = (e: Event) => {
       props.router.go(props.to);
       e.preventDefault();
     };
