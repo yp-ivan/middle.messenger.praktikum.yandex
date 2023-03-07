@@ -16,10 +16,14 @@ export const transformUser = (data: UserDTO): User => ({
 });
 
 export const transformChat = (data: ChatDTO): Chat => {
-  const lastMessage = !data.last_message ? null : {
+  const lastMessage = data.last_message ? {
     user: transformUser(data.last_message.user),
     time: data.last_message.time,
     content: data.last_message.content
+  } : {
+    user: null,
+    time: '',
+    content: ''
   };
   return {
     id: data.id,

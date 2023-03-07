@@ -62,5 +62,8 @@ export const tokenChat = async (
   state: AppState,
   action: number
 ) => {
-  await chatAPI.tokenChat(action);
+  if (!action) return;
+  const response = await chatAPI.tokenChat(action);
+  if (apiHasError(response)) return;
+  dispatch({ chatToken: response.token });
 };

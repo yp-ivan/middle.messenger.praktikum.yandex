@@ -6,8 +6,8 @@ import './chats.scss';
 
 interface ChatsProps {
   store: Store<AppState>;
+  chats: Chat[];
   onCreateChat: (e: Event) => void;
-  chatsCount?: () => number;
 }
 
 export class Chats extends Block<ChatsProps> {
@@ -16,7 +16,7 @@ export class Chats extends Block<ChatsProps> {
   constructor(props: ChatsProps) {
     super(props);
     this.setProps({
-      chatsCount: () => this.props.store.getState().chats.length,
+      chats: this.props.store.getState().chats,
       onCreateChat: this.onCreateChat
     });
   }
@@ -30,8 +30,6 @@ export class Chats extends Block<ChatsProps> {
   };
 
   render() {
-    const { chats } = this.props.store.getState();
-
     // language=hbs
     return `
       <div class="chat-aside__chats">
@@ -42,31 +40,21 @@ export class Chats extends Block<ChatsProps> {
           onClick=onCreateChat
         }}}
         <hr class="hr_chat-sep">
-        {{#if chatsCount}}
-          <div class="chats-list">
-            ${chats.map((chat) => this.renderChatsItem(chat)).join('')}
-          </div>
-        {{else}}
-          <div class="no-messages">Нет чатов</div>
-        {{/if}}
+          {{#each chats}}
+            {{#with this}}
+              {{{ChatsItem
+                chatId=id
+                name=title
+                avatar=avatar
+                lastMessage=lastMessage.content
+                time=lastMessage.time
+                unreadCount=unreadCount
+              }}}
+            {{/with}}
+          {{else}}
+            <div class="no-messages">Нет чатов</div>
+          {{/each}}
       </div>
-    `;
-  }
-
-  renderChatsItem(chat: Chat) {
-    const lastMessage = chat.lastMessage ? chat.lastMessage.content : '';
-    const time = chat.lastMessage ? chat.lastMessage.time : '';
-
-    // language=hbs
-    return `
-      {{{ChatsItem
-        chatId=${chat.id}
-        name="${chat.title}"
-        avatar="${chat.avatar}"
-        lastMessage="${lastMessage}"
-        time="${time}"
-        unreadCount=${chat.unreadCount}
-      }}}
     `;
   }
 }

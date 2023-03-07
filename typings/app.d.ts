@@ -15,6 +15,7 @@ declare global {
     chats: Chat[];
     chatSelected: number;
     chatMessages: ChatMessage[];
+    chatToken: string;
     formErrors: Record<string, string>;
   };
 
@@ -36,10 +37,10 @@ declare global {
     createdBy: number;
     unreadCount: number;
     lastMessage: {
-      user: User;
+      user: User | null;
       time: string;
       content: string;
-    } | null;
+    };
   }
 
   export type ChatMessage = {
@@ -55,6 +56,7 @@ declare global {
   interface Window {
     store: Store<AppState>;
     router: CoreRouter;
+    ws: WSTransport;
   }
 
 }

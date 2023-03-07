@@ -1,6 +1,7 @@
 import { Block, Store } from 'core';
 import { withStore } from 'helpers';
 import { dateFormat } from 'helpers/utils/dateFormat';
+import { tokenChat } from 'services/chat';
 
 import './chatsItem.scss';
 
@@ -41,6 +42,7 @@ export class ChatsItem extends Block<ChatsItemProps> {
         chatSelected: this.props.chatId,
         chatMessages: []
       });
+      this.props.store.dispatch(tokenChat, this.props.chatId);
     }
   };
 

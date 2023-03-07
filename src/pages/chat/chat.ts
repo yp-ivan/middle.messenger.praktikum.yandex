@@ -1,5 +1,6 @@
 import { Block, CoreRouter, Store } from 'core';
 import { withRouter, withStore } from 'helpers';
+import { getChats } from 'services/chat';
 
 import './chat.scss';
 
@@ -13,7 +14,8 @@ export class ChatPage extends Block<ChatPageProps> {
 
   constructor(props: ChatPageProps) {
     super(props);
-  };
+    this.props.store.dispatch(getChats, {});
+  }
 
   render() {
     // language=hbs
@@ -26,6 +28,7 @@ export class ChatPage extends Block<ChatPageProps> {
           <hr class="hr_chat-sep">
           {{{Chats}}}
         </aside>
+        {{{ChatBox}}}
       </div>
     `;
   }

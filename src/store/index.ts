@@ -5,5 +5,6 @@ export const defaultState: AppState = {
   chats: [],
   chatSelected: 0,
   chatMessages: [],
+  chatToken: '',
   formErrors: {}
 };
