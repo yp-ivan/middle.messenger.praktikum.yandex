@@ -46,7 +46,7 @@ export class Input extends Block<InputProps> {
       }
     } as InputSuperProps);
     if (this.props.id === undefined) {
-      this.props.id = nanoid(6);
+      this.setProps({ id: nanoid(6) });
     }
   }
 

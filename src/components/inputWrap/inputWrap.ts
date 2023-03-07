@@ -38,7 +38,7 @@ export class InputWrap extends Block<InputWrapProps> {
       }
     });
     if (this.props.id === undefined) {
-      this.props.id = nanoid(6);
+      this.setProps({ id: nanoid(6) });
     }
   }
 
