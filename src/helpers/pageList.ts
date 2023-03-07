@@ -16,7 +16,7 @@ export enum Pages {
   ProfilePasswordEdit = 'profile-password',
   Chat = 'chat',
   Error404 = 'error404',
-  Error500 = 'error500',
+  Error500 = 'error500'
 
 }
 
@@ -29,9 +29,7 @@ const map: Record<Pages, BlockClass<any>> = {
   [Pages.ProfilePasswordEdit]: ProfilePasswordPage,
   [Pages.Chat]: ChatPage,
   [Pages.Error404]: Error404Page,
-  [Pages.Error500]: Error500Page,
+  [Pages.Error500]: Error500Page
 };
 
-export const getPageComponent = (page: Pages): BlockClass<any> => {
-  return map[page];
-};
+export const getPageComponent = (page: Pages): BlockClass<any> => map[page];

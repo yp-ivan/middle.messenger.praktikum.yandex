@@ -1,17 +1,19 @@
 import { ChatDTO, ChatMessageDTO, UserDTO } from 'api/types';
 
-export const transformUser = (data: UserDTO): User => {
-  return {
-    id: data.id,
-    login: data.login,
-    firstName: data.first_name,
-    secondName: data.second_name,
-    displayName: transformDisplayName(data),
-    avatar: transformAvatar(data.avatar),
-    phone: data.phone,
-    email: data.email,
-  };
-};
+export const transformAvatar = (avatar: Nullable<string>) => avatar || '';
+
+export const transformDisplayName = (data: Partial<UserDTO>) => data.display_name || `${data.first_name} ${data.second_name}`;
+
+export const transformUser = (data: UserDTO): User => ({
+  id: data.id,
+  login: data.login,
+  firstName: data.first_name,
+  secondName: data.second_name,
+  displayName: transformDisplayName(data),
+  avatar: transformAvatar(data.avatar),
+  phone: data.phone,
+  email: data.email
+});
 
 export const transformChat = (data: ChatDTO): Chat => {
   const lastMessage = !data.last_message ? null : {
@@ -29,20 +31,12 @@ export const transformChat = (data: ChatDTO): Chat => {
   };
 };
 
-export const transformAvatar = (avatar: Nullable<string>) => avatar || '';
-
-export const transformDisplayName = (data: Partial<UserDTO>) => {
-  return data.display_name || `${data.first_name} ${data.second_name}`;
-};
-
-export const transformChatMessage = (data: ChatMessageDTO): ChatMessage => {
-  return {
-    id: data.id,
-    userId: data.user_id,
-    chatId: data.chat_id,
-    time: data.time,
-    type: data.type,
-    content: data.content,
-    file: data.file || ''
-  };
-};
+export const transformChatMessage = (data: ChatMessageDTO): ChatMessage => ({
+  id: data.id,
+  userId: data.user_id,
+  chatId: data.chat_id,
+  time: data.time,
+  type: data.type,
+  content: data.content,
+  file: data.file || ''
+});

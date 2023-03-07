@@ -12,7 +12,6 @@ type LoginPageProps = {
 };
 
 export class LoginPage extends Block<LoginPageProps> {
-
   static componentName = 'Вход';
 
   constructor(props: LoginPageProps) {
@@ -30,12 +29,11 @@ export class LoginPage extends Block<LoginPageProps> {
             password: values.password || ''
           };
           const nextState = {
-            values: loginData,
+            values: loginData
           };
           this.setState(nextState);
           this.props.store.dispatch(login, loginData);
         }
-
       }
     });
   }
@@ -44,7 +42,7 @@ export class LoginPage extends Block<LoginPageProps> {
     this.state = {
       values: {
         login: '',
-        password: '',
+        password: ''
       }
     };
   }

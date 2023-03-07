@@ -5,11 +5,11 @@ export type ChatsRequestData = {
   offset?: number;
   limit?: number;
   title?: string;
-}
+};
 
 export type CreateChatRequestData = {
   title: string;
-}
+};
 
 type CreateChatResponseData = {
   id: number
@@ -17,7 +17,7 @@ type CreateChatResponseData = {
 
 export type DeleteChatRequestData = {
   chatId: number;
-}
+};
 
 type DeleteChatResponseData = {
   userId: number;
@@ -31,11 +31,11 @@ type DeleteChatResponseData = {
 export type UsersChatRequestData = {
   users: number[];
   chatId: number;
-}
+};
 
 export type TokenChatResponseData = {
   token: string;
-}
+};
 
 export const chatAPI = {
 
@@ -45,10 +45,10 @@ export const chatAPI = {
 
   deleteChat: (data: DeleteChatRequestData) => request.delete<DeleteChatResponseData | ErrorAPI>('chats', data),
 
-  addUsersChat: (data: UsersChatRequestData) => request.put<{} | ErrorAPI>('chats/users', data),
+  addUsersChat: (data: UsersChatRequestData) => request.put<NullObject | ErrorAPI>('chats/users', data),
 
-  deleteUsersChat: (data: UsersChatRequestData) => request.delete<{} | ErrorAPI>('chats/users', data),
+  deleteUsersChat: (data: UsersChatRequestData) => request.delete<NullObject | ErrorAPI>('chats/users', data),
 
-  tokenChat: (id: number) => request.post<TokenChatResponseData | ErrorAPI>(`chats/token/${id}`),
+  tokenChat: (id: number) => request.post<TokenChatResponseData | ErrorAPI>(`chats/token/${id}`)
 
 };

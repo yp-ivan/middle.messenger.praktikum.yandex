@@ -34,6 +34,6 @@ export type ChatMessageDTO = {
   type: ChatMessageTypeDTO;
   content: string;
   file?: string;
-}
+};
 
 export type ChatMessageTypeDTO = 'message' | 'file';

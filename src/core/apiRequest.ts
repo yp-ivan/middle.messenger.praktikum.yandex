@@ -4,14 +4,14 @@ export function request<T extends any>({
   method,
   path,
   headers,
-  data,
+  data
 }: any): Promise<T> {
 
   return HTTPTransport.request(
     `${process.env.API_ENDPOINT}/${path}`,
     {
       method,
-      headers: headers ? headers : { 'Content-Type': 'application/json' },
+      headers: headers || { 'Content-Type': 'application/json' },
       data
     }
   )
@@ -26,9 +26,7 @@ export function request<T extends any>({
       }
       return {};
     })
-    .then((data) => {
-      return data as T;
-    })
+    .then((data) => data as T);
 }
 
 request.get = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.GET, path, headers, data });

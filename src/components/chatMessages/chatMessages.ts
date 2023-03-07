@@ -13,8 +13,8 @@ export class ChatMessages extends Block<ChatMessagesProps> {
 
   componentDidUpdate(oldProps: ChatMessagesProps, newProps: ChatMessagesProps) {
     // @todo перевести в mapStateToProps(chatMessages, chatSelected)
-    return oldProps.store.getState().chatMessages.length !== newProps.store.getState().chatMessages.length ||
-      oldProps.store.getState().chatSelected !== newProps.store.getState().chatSelected;
+    return oldProps.store.getState().chatMessages.length !== newProps.store.getState().chatMessages.length
+      || oldProps.store.getState().chatSelected !== newProps.store.getState().chatSelected;
   }
 
   render() {
@@ -29,7 +29,7 @@ export class ChatMessages extends Block<ChatMessagesProps> {
     // language=hbs
     return `
       <div class="chat-messages">
-        ${messages.map(message => `
+        ${messages.map((message) => `
           {{{ChatMessagesItem
             type="${message.userId === userId ? 'out' : 'in'}"
             text="${message.content}"

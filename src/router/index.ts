@@ -3,7 +3,7 @@ import { getPageComponent, Pages } from 'helpers';
 import { routes } from './routes';
 
 export function initRouter(router: CoreRouter, store: Store<AppState>) {
-  routes.forEach(route => {
+  routes.forEach((route) => {
     router.use(route.path, () => {
       const isAuthorized = Boolean(store.getState().user);
       const currentPage = Boolean(store.getState().page);

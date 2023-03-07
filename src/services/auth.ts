@@ -6,7 +6,7 @@ import { transformUser, apiHasError } from 'helpers';
 export const register = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: RegisterRequestData,
+  action: RegisterRequestData
 ) => {
   const response = await authAPI.register(action);
 
@@ -36,7 +36,7 @@ export const register = async (
 export const login = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: LoginRequestData,
+  action: LoginRequestData
 ) => {
   const response = await authAPI.login(action);
 

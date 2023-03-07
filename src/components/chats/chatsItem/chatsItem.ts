@@ -42,7 +42,7 @@ export class ChatsItem extends Block<ChatsItemProps> {
         chatMessages: []
       });
     }
-  }
+  };
 
   render() {
     // language=hbs

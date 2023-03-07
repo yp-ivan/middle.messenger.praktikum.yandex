@@ -64,7 +64,7 @@ export function getFormValues(refs, printConsole = true) {
 
 export function getFormKeyValues(values: FormValue[]): Indexed {
   const keyValues: Indexed = {};
-  values.forEach(item => {
+  values.forEach((item) => {
     if (keyValues[item.name] === undefined) {
       keyValues[item.name] = item.value;
     }

@@ -14,7 +14,6 @@ type ProfilePasswordPageProps = {
 };
 
 export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
-
   static componentName = 'Изменение пароля';
 
   constructor(props: ProfilePasswordPageProps) {
@@ -33,7 +32,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
           };
 
           const nextState = {
-            values: updatePasswordData,
+            values: updatePasswordData
           };
 
           this.setState(nextState);
@@ -64,7 +63,7 @@ export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
   }
 
   render() {
-    const user = this.props.store.getState().user;
+    const { user } = this.props.store.getState();
 
     // language=hbs
     return `

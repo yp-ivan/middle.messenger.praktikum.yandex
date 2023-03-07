@@ -11,7 +11,6 @@ type ProfilePageProps = {
 };
 
 export class ProfilePage extends Block<ProfilePageProps> {
-
   static componentName = 'Профиль';
 
   constructor(props: ProfilePageProps) {
@@ -22,10 +21,10 @@ export class ProfilePage extends Block<ProfilePageProps> {
         this.props.store.dispatch(logout, {});
       }
     });
-  };
+  }
 
   render() {
-    const user = this.props.store.getState().user;
+    const { user } = this.props.store.getState();
 
     // language=hbs
     return `

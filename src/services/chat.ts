@@ -6,19 +6,19 @@ import { transformChat } from 'helpers/apiTransformers';
 export const getChats = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: ChatsRequestData,
+  action: ChatsRequestData
 ) => {
   const response = await chatAPI.getChats(action);
   if (apiHasError(response)) {
     return;
   }
-  dispatch({ chats: response.map(item => transformChat(item)) });
+  dispatch({ chats: response.map((item) => transformChat(item)) });
 };
 
 export const createChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: CreateChatRequestData,
+  action: CreateChatRequestData
 ) => {
   const response = await chatAPI.createChat(action);
   if (apiHasError(response)) {
@@ -31,7 +31,7 @@ export const createChat = async (
 export const deleteChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: DeleteChatRequestData,
+  action: DeleteChatRequestData
 ) => {
   const response = await chatAPI.deleteChat(action);
   if (apiHasError(response)) {
@@ -44,32 +44,23 @@ export const deleteChat = async (
 export const addUsersChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: UsersChatRequestData,
+  action: UsersChatRequestData
 ) => {
-  const response = await chatAPI.addUsersChat(action);
-  if (apiHasError(response)) {
-    return;
-  }
+  await chatAPI.addUsersChat(action);
 };
 
 export const deleteUsersChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: UsersChatRequestData,
+  action: UsersChatRequestData
 ) => {
-  const response = await chatAPI.deleteUsersChat(action);
-  if (apiHasError(response)) {
-    return;
-  }
+  await chatAPI.deleteUsersChat(action);
 };
 
 export const tokenChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: number,
+  action: number
 ) => {
-  const response = await chatAPI.tokenChat(action);
-  if (apiHasError(response)) {
-    return;
-  }
+  await chatAPI.tokenChat(action);
 };

@@ -8,7 +8,7 @@ export type UpdateProfileRequestData = {
   login: string;
   email: string;
   phone: string;
-}
+};
 
 export type UpdatePasswordRequestData = {
   oldPassword: string;
@@ -17,7 +17,7 @@ export type UpdatePasswordRequestData = {
 
 export type SearchRequestData = {
   login: string;
-}
+};
 
 export const userAPI = {
   update: (data: UpdateProfileRequestData) => request.put<UserDTO | ErrorAPI>('user/profile', data),
@@ -28,5 +28,5 @@ export const userAPI = {
 
   get: (id: number) => request.get<UserDTO | ErrorAPI>(`user/${id}`),
 
-  search: (data: SearchRequestData) => request.post<UserDTO[] | ErrorAPI>('user/search', data),
+  search: (data: SearchRequestData) => request.post<UserDTO[] | ErrorAPI>('user/search', data)
 };

@@ -15,7 +15,6 @@ type ProfileEditPageProps = {
 };
 
 export class ProfileEditPage extends Block<ProfileEditPageProps> {
-
   static componentName = 'Редактирование профиля';
 
   constructor(props: ProfileEditPageProps) {
@@ -38,7 +37,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
           };
 
           const nextState = {
-            values: updateProfileData,
+            values: updateProfileData
           };
 
           this.setState(nextState);
@@ -48,7 +47,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       },
       onUpdateAvatar: (e: Event) => {
         e.preventDefault();
-        const files = (e.target as HTMLInputElement).files;
+        const { files } = e.target as HTMLInputElement;
         if (files && files.length) {
           const avatarData = new FormData();
           avatarData.append('avatar', files[0]);
@@ -58,7 +57,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
       }
     });
 
-    const user = this.props.store.getState().user;
+    const { user } = this.props.store.getState();
     const nextState = {
       values: {
         email: user?.email,
@@ -86,7 +85,7 @@ export class ProfileEditPage extends Block<ProfileEditPageProps> {
   }
 
   render() {
-    const user = this.props.store.getState().user;
+    const { user } = this.props.store.getState();
     const { values } = this.state;
 
     // language=hbs

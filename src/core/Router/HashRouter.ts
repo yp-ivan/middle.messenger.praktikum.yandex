@@ -35,7 +35,7 @@ export class HashRouter implements CoreRouter {
   }
 
   getPath(hash: string): string {
-    return '#' + hash;
+    return `#${hash}`;
   }
 
   go(hash: string) {

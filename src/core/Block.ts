@@ -16,7 +16,7 @@ export default class Block<P extends Record<string, any> = any> {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_CWU: 'flow:component-will-unmount',
-    FLOW_RENDER: 'flow:render',
+    FLOW_RENDER: 'flow:render'
   } as const;
 
   public static componentName: string;
@@ -231,7 +231,7 @@ export default class Block<P extends Record<string, any> = any> {
       ...this.state,
       ...this.props,
       children: this.children,
-      refs: this.refs,
+      refs: this.refs
     });
 
     /**

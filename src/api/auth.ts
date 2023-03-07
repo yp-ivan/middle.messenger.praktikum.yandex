@@ -6,7 +6,7 @@ export type LoginRequestData = {
   password: string;
 };
 
-type LoginResponseData = {} | ErrorAPI;
+type LoginResponseData = NullObject | ErrorAPI;
 
 export type RegisterRequestData = {
   first_name: string,
@@ -15,7 +15,7 @@ export type RegisterRequestData = {
   email: string,
   password: string,
   phone: string
-}
+};
 
 type RegisterResponseData = { id: number } | ErrorAPI;
 
@@ -26,5 +26,5 @@ export const authAPI = {
 
   getUser: () => request.get<UserDTO | ErrorAPI>('auth/user'),
 
-  logout: () => request.post('auth/logout'),
+  logout: () => request.post('auth/logout')
 };

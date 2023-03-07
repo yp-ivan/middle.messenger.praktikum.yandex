@@ -33,5 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initRouter(router, store);
 
   store.dispatch(initApp);
-
 });

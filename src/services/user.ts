@@ -4,10 +4,17 @@ import type { Dispatch } from 'core';
 import { transformUser, apiHasError } from 'helpers';
 import { authAPI } from 'api/auth';
 
+const updateUserData = async (dispatch: Dispatch<AppState>) => {
+  const response = await authAPI.getUser();
+  if (!apiHasError(response)) {
+    dispatch({ user: transformUser(response as UserDTO) });
+  }
+};
+
 export const update = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: UpdateProfileRequestData,
+  action: UpdateProfileRequestData
 ) => {
   const response = await userAPI.update(action);
 
@@ -30,7 +37,7 @@ export const update = async (
 export const updatePassword = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: UpdatePasswordRequestData,
+  action: UpdatePasswordRequestData
 ) => {
   const response = await userAPI.updatePassword(action);
 
@@ -51,7 +58,7 @@ export const updatePassword = async (
 export const updateAvatar = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action: FormData,
+  action: FormData
 ) => {
   const response = await userAPI.updateAvatar(action);
 
@@ -70,11 +77,3 @@ export const updateAvatar = async (
 
   window.router.go('settings');
 };
-
-
-const updateUserData = async (dispatch: Dispatch<AppState>) => {
-  const response = await authAPI.getUser();
-  if (!apiHasError(response)) {
-    dispatch({ user: transformUser(response as UserDTO) });
-  }
-}

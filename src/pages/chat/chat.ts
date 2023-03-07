@@ -9,7 +9,6 @@ type ChatPageProps = {
 };
 
 export class ChatPage extends Block<ChatPageProps> {
-
   static componentName = 'Чат';
 
   constructor(props: ChatPageProps) {

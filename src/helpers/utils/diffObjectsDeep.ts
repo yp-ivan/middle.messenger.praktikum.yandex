@@ -6,7 +6,7 @@ export const diffObjectsDeep = {
   VALUE_UPDATED: 'updated',
   VALUE_DELETED: 'deleted',
   VALUE_UNCHANGED: 'unchanged',
-  map: function (obj1?: Indexed, obj2?: Indexed) {
+  map(obj1?: Indexed, obj2?: Indexed) {
     if (this.isFunction(obj1) || this.isFunction(obj2)) {
       throw 'Invalid argument. Function given, object expected.';
     }
@@ -19,7 +19,7 @@ export const diffObjectsDeep = {
 
       return {
         type,
-        data: obj1 === undefined ? obj2 : obj1,
+        data: obj1 === undefined ? obj2 : obj1
       };
     }
 
@@ -29,7 +29,7 @@ export const diffObjectsDeep = {
         continue;
       }
 
-      let value2 = undefined;
+      let value2;
       if (obj2 && obj2[key] !== undefined) {
         value2 = obj2[key];
       }
@@ -46,14 +46,14 @@ export const diffObjectsDeep = {
 
     return diff;
   },
-  compareValues: function (value1: unknown, value2: unknown) {
+  compareValues(value1: unknown, value2: unknown) {
     if (value1 === value2) {
       return this.VALUE_UNCHANGED;
     }
     if (
-      this.isDate(value1) &&
-      this.isDate(value2) &&
-      value1.getTime() === value2.getTime()
+      this.isDate(value1)
+      && this.isDate(value2)
+      && value1.getTime() === value2.getTime()
     ) {
       return this.VALUE_UNCHANGED;
     }
@@ -65,19 +65,19 @@ export const diffObjectsDeep = {
     }
     return this.VALUE_UPDATED;
   },
-  isFunction: function (x: unknown): x is Function {
+  isFunction(x: unknown): x is Function {
     return Object.prototype.toString.call(x) === '[object Function]';
   },
-  isArray: function (x: unknown): x is any[] {
+  isArray(x: unknown): x is any[] {
     return Object.prototype.toString.call(x) === '[object Array]';
   },
-  isDate: function (x: unknown): x is Date {
+  isDate(x: unknown): x is Date {
     return Object.prototype.toString.call(x) === '[object Date]';
   },
-  isObject: function (x: unknown): x is Indexed {
+  isObject(x: unknown): x is Indexed {
     return Object.prototype.toString.call(x) === '[object Object]';
   },
-  isValue: function (x: unknown) {
+  isValue(x: unknown) {
     return !this.isObject(x) && !this.isArray(x);
-  },
+  }
 };

@@ -27,10 +27,10 @@ export class Chats extends Block<ChatsProps> {
     if (title) {
       this.props.store.dispatch(createChat, { title });
     }
-  }
+  };
 
   render() {
-    const chats = this.props.store.getState().chats;
+    const { chats } = this.props.store.getState();
 
     // language=hbs
     return `
@@ -44,7 +44,7 @@ export class Chats extends Block<ChatsProps> {
         <hr class="hr_chat-sep">
         {{#if chatsCount}}
           <div class="chats-list">
-            ${chats.map(chat => this.renderChatsItem(chat)).join('')}
+            ${chats.map((chat) => this.renderChatsItem(chat)).join('')}
           </div>
         {{else}}
           <div class="no-messages">Нет чатов</div>

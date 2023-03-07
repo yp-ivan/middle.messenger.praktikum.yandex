@@ -72,12 +72,10 @@ class HTTPTransport {
 
       if (method === METHODS.GET) {
         xhr.send();
+      } else if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
+        xhr.send(JSON.stringify(data));
       } else {
-        if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
-          xhr.send(JSON.stringify(data));
-        } else {
-          xhr.send(data);
-        }
+        xhr.send(data);
       }
     });
   };

@@ -12,7 +12,6 @@ type RegisterPageProps = {
 };
 
 export class RegisterPage extends Block<RegisterPageProps> {
-
   static componentName = 'Регистрация';
 
   constructor(props: RegisterPageProps) {
@@ -31,11 +30,11 @@ export class RegisterPage extends Block<RegisterPageProps> {
             first_name: values.first_name || '',
             second_name: values.second_name || '',
             phone: values.phone || '',
-            password: values.password || '',
+            password: values.password || ''
           };
 
           const nextState = {
-            values: registerData,
+            values: registerData
           };
 
           this.setState(nextState);
@@ -53,7 +52,7 @@ export class RegisterPage extends Block<RegisterPageProps> {
         login: '',
         first_name: '',
         second_name: '',
-        phone: '',
+        phone: ''
       }
     };
   }

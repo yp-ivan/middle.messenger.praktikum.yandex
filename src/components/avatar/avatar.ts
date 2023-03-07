@@ -16,8 +16,8 @@ export class Avatar extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
     super(props);
     this.setProps({
-      fullUrl: () => this.props.url ? `${Avatar.baseUrl}${this.props.url}` : ''
-    })
+      fullUrl: () => (this.props.url ? `${Avatar.baseUrl}${this.props.url}` : '')
+    });
   }
 
   render() {

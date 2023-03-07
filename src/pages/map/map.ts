@@ -3,11 +3,7 @@ import { Block } from 'core';
 import './map.scss';
 
 export class MapPage extends Block {
-
   static componentName = 'Карта сайта';
-  constructor() {
-    super();
-  }
 
   render() {
     // language=hbs

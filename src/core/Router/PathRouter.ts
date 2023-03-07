@@ -10,7 +10,7 @@ export class PathRouter implements CoreRouter {
       this.isStarted = true;
       window.onpopstate = (event: PopStateEvent) => {
         this.onRouteChange.call(this);
-      }
+      };
       this.onRouteChange();
     }
   }
@@ -37,11 +37,11 @@ export class PathRouter implements CoreRouter {
   }
 
   getPath(pathname: string): string {
-    return '/' + pathname;
+    return `/${pathname}`;
   }
 
   go(pathname: string) {
-    window.history.pushState({}, '', this.getPath(pathname))
+    window.history.pushState({}, '', this.getPath(pathname));
     this.onRouteChange();
   }
 

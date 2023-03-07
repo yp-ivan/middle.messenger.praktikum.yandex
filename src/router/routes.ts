@@ -4,51 +4,51 @@ export const routes = [
   {
     path: 'map',
     block: Pages.Map,
-    shouldAuthorized: false,
+    shouldAuthorized: false
   },
   {
     path: '',
     block: Pages.Login,
-    shouldAuthorized: false,
+    shouldAuthorized: false
   },
   {
     path: 'sign-up',
     block: Pages.Register,
-    shouldAuthorized: false,
+    shouldAuthorized: false
   },
   {
     path: 'settings',
     block: Pages.Profile,
-    shouldAuthorized: true,
+    shouldAuthorized: true
   },
   {
     path: 'settings-edit',
     block: Pages.ProfileEdit,
-    shouldAuthorized: true,
+    shouldAuthorized: true
   },
   {
     path: 'settings-password',
     block: Pages.ProfilePasswordEdit,
-    shouldAuthorized: true,
+    shouldAuthorized: true
   },
   {
     path: 'messenger',
     block: Pages.Chat,
-    shouldAuthorized: true,
+    shouldAuthorized: true
   },
   {
     path: '*',
     block: Pages.Error404,
-    shouldAuthorized: false,
+    shouldAuthorized: false
   },
   {
     path: 'error-404',
     block: Pages.Error404,
-    shouldAuthorized: false,
+    shouldAuthorized: false
   },
   {
     path: 'error-500',
     block: Pages.Error500,
-    shouldAuthorized: false,
-  },
+    shouldAuthorized: false
+  }
 ];
