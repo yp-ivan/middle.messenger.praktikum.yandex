@@ -34,9 +34,10 @@ interface InputSuperProps extends InputBaseProps {
 export class Input extends Block<InputProps> {
   static componentName = 'Input';
 
-  constructor({ onInput, onBlur, onFocus, onChange, type = 'text', ...props }: InputProps) {
+  constructor({ onInput, onBlur, onFocus, onChange, type = 'text', id, ...props }: InputProps) {
     super({
       type,
+      id: (id !== undefined) ? id : nanoid(6),
       ...props,
       events: {
         input: onInput,
@@ -45,9 +46,6 @@ export class Input extends Block<InputProps> {
         change: onChange
       }
     } as InputSuperProps);
-    if (this.props.id === undefined) {
-      this.setProps({ id: nanoid(6) });
-    }
   }
 
   protected render(): string {

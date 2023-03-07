@@ -27,6 +27,11 @@ export class ProfilePage extends Block<ProfilePageProps> {
   render() {
     const { user } = this.props;
 
+    if (!user) {
+      // language=hbs
+      return `<div class="fbox"></div>`;
+    }
+
     // language=hbs
     return `
       <div class="fbox">

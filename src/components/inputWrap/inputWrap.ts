@@ -24,8 +24,9 @@ interface InputWrapProps {
 export class InputWrap extends Block<InputWrapProps> {
   static componentName = 'InputWrap';
 
-  constructor({ ...props }: InputWrapProps) {
+  constructor({ id, ...props }: InputWrapProps) {
     super({
+      id: (id !== undefined) ? id : nanoid(6),
       ...props,
       onInput: (e: Event) => {
         this.validate(e);
@@ -37,9 +38,6 @@ export class InputWrap extends Block<InputWrapProps> {
         this.validate(e, false);
       }
     });
-    if (this.props.id === undefined) {
-      this.setProps({ id: nanoid(6) });
-    }
   }
 
   validate(e: Event, checkEmpty = true) {
