@@ -1,12 +1,12 @@
 .profile__back {
   display: flex;
   width: 65px;
-  background: url("../../assets/ico-arrow.svg") center no-repeat #fbfbfb;
+  background: url("../../assets/ico-arrow.svg") center no-repeat var(--color-lightgray-bg);
   border-right: 1px solid var(--border-color);
   cursor: pointer;
 
   &:hover {
-    background-color: #e4edfd;
+    background-color: var(--color-lightgray-bg-hover);
   }
 }
 

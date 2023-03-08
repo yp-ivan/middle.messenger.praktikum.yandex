@@ -7,7 +7,7 @@
 
   &:hover,
   &.active {
-    background-color: #e4edfd;
+    background-color: var(--color-lightgray-bg-hover);
   }
 
   &__right {
@@ -65,8 +65,8 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #3369f3;
-    color: white;
+    background-color: var(--color-blue);
+    color: var(--color-white);
     text-align: center;
     line-height: 20px;
   }

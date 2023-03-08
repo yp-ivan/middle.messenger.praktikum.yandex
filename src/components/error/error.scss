@@ -1,7 +1,7 @@
 .error {
   margin: 0.5rem 0;
   text-align: center;
-  color: var(--color-red);
+  color: var(--color-error);
 
   &:empty {
     display: none;
