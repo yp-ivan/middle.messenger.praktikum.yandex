@@ -11,14 +11,14 @@ export type FormValue = {
   value: any;
 };
 
-function getType(obj: Record<string, string | RegExp>, type: ValidateType) {
+const getType = (obj: Record<string, string | RegExp>, type: ValidateType) => {
   return Object
     .entries(obj)
     .filter(([key]) => key === type)
     .flat()[1];
 }
 
-export function validateControl(rules: ValidateItem[]): unknown | string {
+export const validateControl = (rules: ValidateItem[]): unknown | string => {
   for (let i = 0; i < rules.length; i++) {
     const { rule, value } = rules[i];
     const ruleType = getType(ValidateRegex, rule);
@@ -28,7 +28,7 @@ export function validateControl(rules: ValidateItem[]): unknown | string {
   }
 }
 
-export function validateForm(refs: { [key: string]: Block }) {
+export const validateForm = (refs: { [key: string]: Block }) => {
   let isValid = true;
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
@@ -46,7 +46,7 @@ export function validateForm(refs: { [key: string]: Block }) {
   return isValid;
 }
 
-export function getFormValues(refs, printConsole = true) {
+export const getFormValues = (refs, printConsole = true) => {
   const values: FormValue[] = [];
   Object.entries(refs).forEach((ref: unknown) => {
     if (ref[0].endsWith('Input')) {
@@ -62,7 +62,7 @@ export function getFormValues(refs, printConsole = true) {
   return values;
 }
 
-export function getFormKeyValues(values: FormValue[]): Indexed {
+export const getFormKeyValues = (values: FormValue[]): Indexed => {
   const keyValues: Indexed = {};
   values.forEach((item) => {
     if (keyValues[item.name] === undefined) {

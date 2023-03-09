@@ -5,7 +5,7 @@ type WithStateProps = { store: Store<AppState> };
 
 type MapStateToProps<S> = (state: AppState) => S;
 
-export function withStore<P extends WithStateProps, S = any>(WrappedBlock: BlockClass<P>, mapStateToProps?: MapStateToProps<S>) {
+export const withStore = <P extends WithStateProps, S = any>(WrappedBlock: BlockClass<P>, mapStateToProps?: MapStateToProps<S>) => {
   // @ts-expect-error No base constructor has the specified
   return class extends WrappedBlock<P> {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;

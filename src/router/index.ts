@@ -2,7 +2,7 @@ import { Store, renderDOM, CoreRouter } from 'core';
 import { getPageComponent, Pages } from 'helpers';
 import { routes } from './routes';
 
-export function initRouter(router: CoreRouter, store: Store<AppState>) {
+export const initRouter = (router: CoreRouter, store: Store<AppState>) => {
   routes.forEach((route) => {
     router.use(route.path, () => {
       const isAuthorized = Boolean(store.getState().user);

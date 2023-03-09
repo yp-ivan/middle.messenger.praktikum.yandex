@@ -1,4 +1,4 @@
-export function mergeDeep(lhs: Indexed, rhs: Indexed): Indexed {
+export const mergeDeep = (lhs: Indexed, rhs: Indexed): Indexed => {
   for (const p in rhs) {
     if (!rhs.hasOwnProperty(p)) {
       continue;
