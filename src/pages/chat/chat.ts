@@ -9,7 +9,7 @@ type ChatPageProps = {
   store: Store<AppState>;
 };
 
-export class ChatPage extends Block<ChatPageProps> {
+class ChatPage extends Block<ChatPageProps> {
   static componentName = 'Чат';
 
   constructor(props: ChatPageProps) {

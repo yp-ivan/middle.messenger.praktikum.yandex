@@ -11,7 +11,7 @@ type ProfilePageProps = {
   onLogout: (e: Event) => void;
 };
 
-export class ProfilePage extends Block<ProfilePageProps> {
+class ProfilePage extends Block<ProfilePageProps> {
   static componentName = 'Профиль';
 
   constructor(props: ProfilePageProps) {

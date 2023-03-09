@@ -11,7 +11,7 @@ type LoginPageProps = {
   formError?: () => string | null;
 };
 
-export class LoginPage extends Block<LoginPageProps> {
+class LoginPage extends Block<LoginPageProps> {
   static componentName = 'Вход';
 
   constructor(props: LoginPageProps) {

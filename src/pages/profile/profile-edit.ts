@@ -15,7 +15,7 @@ type ProfileEditPageProps = {
   formError: () => string;
 };
 
-export class ProfileEditPage extends Block<ProfileEditPageProps> {
+class ProfileEditPage extends Block<ProfileEditPageProps> {
   static componentName = 'Редактирование профиля';
 
   constructor(props: ProfileEditPageProps) {

@@ -11,7 +11,7 @@ type RegisterPageProps = {
   formError?: () => string | null;
 };
 
-export class RegisterPage extends Block<RegisterPageProps> {
+class RegisterPage extends Block<RegisterPageProps> {
   static componentName = 'Регистрация';
 
   constructor(props: RegisterPageProps) {

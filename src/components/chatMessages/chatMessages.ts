@@ -8,7 +8,7 @@ interface ChatMessagesProps {
   user: User;
 }
 
-export class ChatMessages extends Block<ChatMessagesProps> {
+class ChatMessages extends Block<ChatMessagesProps> {
   static componentName = 'ChatMessages';
 
   componentDidUpdate(oldProps: ChatMessagesProps, newProps: ChatMessagesProps) {

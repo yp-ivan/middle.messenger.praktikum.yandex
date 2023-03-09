@@ -22,7 +22,7 @@ interface ChatsItemSuperProps extends ChatsItemProps {
   }
 }
 
-export class ChatsItem extends Block<ChatsItemProps> {
+class ChatsItem extends Block<ChatsItemProps> {
   static componentName = 'ChatsItem';
 
   constructor(props: ChatsItemProps) {

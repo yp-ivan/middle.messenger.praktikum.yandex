@@ -1,2 +1,1 @@
-export { ChatMessagesItem as default } from './chatMessagesItem';
-export { MessagesItemProps } from './chatMessagesItem';
+export { ChatMessagesItem, MessagesItemProps } from './chatMessagesItem';

@@ -14,7 +14,7 @@ type ProfilePasswordPageProps = {
   formError: () => string;
 };
 
-export class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
+class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
   static componentName = 'Изменение пароля';
 
   constructor(props: ProfilePasswordPageProps) {

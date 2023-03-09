@@ -22,7 +22,7 @@ interface ChatBoxProps {
   onSendMessage?: (e: Event) => void;
 }
 
-export class ChatBox extends Block<ChatBoxProps> {
+class ChatBox extends Block<ChatBoxProps> {
   static componentName = 'ChatBox';
 
   constructor(props: ChatBoxProps) {

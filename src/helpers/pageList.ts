@@ -1,11 +1,5 @@
 import { BlockClass } from 'core';
-import MapPage from 'pages/map';
-import LoginPage from 'pages/login';
-import ProfilePage, { ProfileEditPage, ProfilePasswordPage } from 'pages/profile';
-import RegisterPage from 'pages/register';
-import Error404Page from 'pages/error404';
-import Error500Page from 'pages/error500';
-import ChatPage from 'pages/chat';
+import * as pages from 'pages';
 
 export enum Pages {
   Map = 'map',
@@ -21,15 +15,15 @@ export enum Pages {
 }
 
 const map: Record<Pages, BlockClass<any>> = {
-  [Pages.Map]: MapPage,
-  [Pages.Login]: LoginPage,
-  [Pages.Register]: RegisterPage,
-  [Pages.Profile]: ProfilePage,
-  [Pages.ProfileEdit]: ProfileEditPage,
-  [Pages.ProfilePasswordEdit]: ProfilePasswordPage,
-  [Pages.Chat]: ChatPage,
-  [Pages.Error404]: Error404Page,
-  [Pages.Error500]: Error500Page
+  [Pages.Map]: pages.MapPage,
+  [Pages.Login]: pages.LoginPage,
+  [Pages.Register]: pages.RegisterPage,
+  [Pages.Profile]: pages.ProfilePage,
+  [Pages.ProfileEdit]: pages.ProfileEditPage,
+  [Pages.ProfilePasswordEdit]: pages.ProfilePasswordPage,
+  [Pages.Chat]: pages.ChatPage,
+  [Pages.Error404]: pages.Error404Page,
+  [Pages.Error500]: pages.Error500Page
 };
 
 export const getPageComponent = (page: Pages): BlockClass<any> => map[page];
