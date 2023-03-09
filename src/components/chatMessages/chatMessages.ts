@@ -1,5 +1,6 @@
 import { Block, Store } from 'core';
 import { withStore, withUser } from 'helpers';
+import { removeQuote } from 'helpers/utils/escapeText';
 
 import './chatMessages.scss';
 
@@ -32,7 +33,7 @@ class ChatMessages extends Block<ChatMessagesProps> {
         ${messages.map((message) => `
           {{{ChatMessagesItem
             type="${message.userId === userId ? 'out' : 'in'}"
-            text="${message.content}"
+            text="${removeQuote(message.content)}"
             time="${message.time}"
           }}}`).join('')}
       </div>

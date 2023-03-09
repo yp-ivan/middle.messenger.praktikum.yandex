@@ -1,12 +1,11 @@
 import { Block, Store } from 'core';
 import { withStore, withUser, withWS } from 'helpers';
-import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { getFormKeyValues, getFormValues } from 'helpers/validate/validateForm';
 import { WSTransport } from 'helpers/WSTransport';
 import { UsersChatRequestData } from 'api/chat';
 import { ChatMessageDTO } from 'api/types';
 import { addUsersChat, deleteChat, deleteUsersChat } from 'services/chat';
 import { transformChatMessage } from 'helpers/apiTransformers';
-import { escapeHTML } from 'helpers/utils/escapeText';
 
 import './chatBox.scss';
 
@@ -88,14 +87,10 @@ class ChatBox extends Block<ChatBoxProps> {
 
   onSendMessage = (e: Event) => {
     e.preventDefault();
-    const isValid = validateForm(this.refs);
     const values = getFormKeyValues(getFormValues(this.refs));
-
-    if (isValid) {
-      const message = escapeHTML(values.chatMessage) || '';
-      if (this.props.ws && message) {
-        this.props.ws.sendMessage(message);
-      }
+    const message = values.chatMessage || '';
+    if (this.props.ws && message) {
+      this.props.ws.sendMessage(message);
     }
   };
 
@@ -189,7 +184,6 @@ class ChatBox extends Block<ChatBoxProps> {
               type="text"
               placeholder="Сообщение"
               required=true
-              validateRule="notEmpty"
               ref="chatMessageInput"
             }}}
             {{{Button

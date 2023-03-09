@@ -1,5 +1,6 @@
 import Block from 'core/Block';
 import { dateFormat } from 'helpers/utils/dateFormat';
+import { escapeHTML } from 'helpers/utils/escapeText';
 
 import './chatMessagesItem.scss';
 
@@ -13,11 +14,14 @@ export class ChatMessagesItem extends Block<MessagesItemProps> {
   static componentName = 'ChatMessagesItem';
 
   render() {
+    const timeFormat = dateFormat(this.props.time);
+    const textFormat = escapeHTML(this.props.text);
+
     // language=hbs
     return `
       <div class="chat-message chat-message_{{type}}">
-        <div class="chat-message__text">{{text}}</div>
-        <div class="chat-message__time">${dateFormat(this.props.time)}</div>
+        <div class="chat-message__text">${textFormat}</div>
+        <div class="chat-message__time">${timeFormat}</div>
       </div>
     `;
   }
