@@ -25,8 +25,16 @@ export const createChat = async (
     return;
   }
 
-  // Обновляем список чатов в store из API после создания нового чата
-  await getChats(dispatch, state, {});
+  // Обновляем список чатов в store локально (без запроса API)
+  const newChat = {
+    id: response.id,
+    title: action.title,
+    avatar: null,
+    created_by: state.user ? state.user.id : 0,
+    last_message: null,
+    unread_count: 0
+  };
+  dispatch({ chats: [transformChat(newChat), ...state.chats] });
 };
 
 export const deleteChat = async (

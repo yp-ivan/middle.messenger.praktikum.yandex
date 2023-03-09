@@ -16,14 +16,14 @@ export type UserDTO = {
 export type ChatDTO = {
   id: number;
   title: string;
-  avatar: string;
+  avatar: string | null;
   created_by: number;
   unread_count: number;
   last_message: {
     user: UserDTO;
     time: string;
     content: string;
-  };
+  } | null;
 };
 
 export type ChatMessageDTO = {
