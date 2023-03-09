@@ -41,4 +41,4 @@ export const withStore = <P extends WithStateProps, S = any>(WrappedBlock: Block
       window.store.off('changed', this.__onChangeStoreCallback);
     }
   } as BlockClass<Omit<P, 'store'>>;
-}
+};

@@ -113,11 +113,11 @@ export class WSTransport {
     this._counts = val;
   }
 
-  public addEvent<T = Event>(type: string, callback: (e: T) => any) {
+  public addEvent<T = Event>(type: string, callback: (e: T) => void) {
     this._socket?.addEventListener<T>(type, callback);
   }
 
-  public removeEvent<T = Event>(type: string, callback: (e: T) => any) {
+  public removeEvent<T = Event>(type: string, callback: (e: T) => void) {
     this._socket?.removeEventListener<T>(type, callback);
   }
 

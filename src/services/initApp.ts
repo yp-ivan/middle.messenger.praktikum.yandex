@@ -2,7 +2,7 @@ import { authAPI } from 'api/auth';
 import type { Dispatch } from 'core';
 import { transformUser, apiHasError } from 'helpers';
 
-export const initApp = async(dispatch: Dispatch<AppState>) => {
+export const initApp = async (dispatch: Dispatch<AppState>) => {
   try {
     const response = await authAPI.getUser();
 
@@ -16,4 +16,4 @@ export const initApp = async(dispatch: Dispatch<AppState>) => {
   } finally {
     dispatch({ appIsInited: true });
   }
-}
+};

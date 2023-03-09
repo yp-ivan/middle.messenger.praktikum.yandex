@@ -43,6 +43,6 @@ const registerComponent = <Props extends Record<string, any> = any>(Component: B
       return `<div data-id="${component.id}">${contents}</div>`;
     }
   );
-}
+};
 
 export default registerComponent;

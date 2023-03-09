@@ -16,7 +16,7 @@ const getType = (obj: Record<string, string | RegExp>, type: ValidateType) => {
     .entries(obj)
     .filter(([key]) => key === type)
     .flat()[1];
-}
+};
 
 export const validateControl = (rules: ValidateItem[]): unknown | string => {
   for (let i = 0; i < rules.length; i++) {
@@ -26,7 +26,7 @@ export const validateControl = (rules: ValidateItem[]): unknown | string => {
       return (getType(errorsTexts, rule) as string);
     }
   }
-}
+};
 
 export const validateForm = (refs: { [key: string]: Block }) => {
   let isValid = true;
@@ -44,7 +44,7 @@ export const validateForm = (refs: { [key: string]: Block }) => {
     }
   });
   return isValid;
-}
+};
 
 export const getFormValues = (refs, printConsole = true) => {
   const values: FormValue[] = [];
@@ -60,7 +60,7 @@ export const getFormValues = (refs, printConsole = true) => {
     console.log('formValues', values);
   }
   return values;
-}
+};
 
 export const getFormKeyValues = (values: FormValue[]): Indexed => {
   const keyValues: Indexed = {};
@@ -70,4 +70,4 @@ export const getFormKeyValues = (values: FormValue[]): Indexed => {
     }
   });
   return keyValues;
-}
+};

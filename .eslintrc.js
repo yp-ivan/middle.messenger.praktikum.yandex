@@ -46,6 +46,7 @@ module.exports = {
     'import/first': 'off',
     'no-plusplus': 'off',
     'no-alert': 'off',
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'arrow-body-style': ['warn']
   }
 }

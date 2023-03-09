@@ -28,4 +28,4 @@ export const withUser = <P extends WithUserProps>(WrappedBlock: BlockClass<P>) =
       window.store.off('changed', this.__onChangeUserCallback);
     }
   } as BlockClass<Omit<P, 'user'>>;
-}
+};

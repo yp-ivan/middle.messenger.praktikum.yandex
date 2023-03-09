@@ -12,4 +12,4 @@ export const withWS = <P extends WithWSProps>(WrappedBlock: BlockClass<P>) => {
       super({ ...props, ws: window.ws });
     }
   } as BlockClass<Omit<P, 'ws'>>;
-}
+};

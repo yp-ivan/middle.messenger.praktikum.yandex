@@ -1,12 +1,14 @@
-import HTTPTransport, { METHODS } from 'helpers/HTTPTransport';
+import HTTPTransport, { METHODS, RequestData, RequestOptions } from 'helpers/HTTPTransport';
+
+interface ApiRequestOptions extends RequestOptions {
+  path: string;
+}
 
 export function request<T extends any>({
   method,
   path,
   headers,
-  data
-}: any): Promise<T> {
-
+  data }: ApiRequestOptions): Promise<T> {
   return HTTPTransport.request(
     `${process.env.API_ENDPOINT}/${path}`,
     {
@@ -29,10 +31,10 @@ export function request<T extends any>({
     .then((data) => data as T);
 }
 
-request.get = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.GET, path, headers, data });
+request.get = <T>(path: string, data?: RequestData, headers?: KeyValueString) => request<T>({ method: METHODS.GET, path, headers, data });
 
-request.post = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.POST, path, headers, data });
+request.post = <T>(path: string, data?: RequestData, headers?: KeyValueString) => request<T>({ method: METHODS.POST, path, headers, data });
 
-request.put = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.PUT, path, headers, data });
+request.put = <T>(path: string, data?: RequestData, headers?: KeyValueString) => request<T>({ method: METHODS.PUT, path, headers, data });
 
-request.delete = <T>(path: string, data?: any, headers?: any) => request<T>({ method: METHODS.DELETE, path, headers, data });
+request.delete = <T>(path: string, data?: RequestData, headers?: KeyValueString) => request<T>({ method: METHODS.DELETE, path, headers, data });

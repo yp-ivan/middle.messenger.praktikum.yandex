@@ -7,7 +7,7 @@ export const initRouter = (router: CoreRouter, store: Store<AppState>) => {
     router.use(route.path, () => {
       const isAuthorized = Boolean(store.getState().user);
       const currentPage = Boolean(store.getState().page);
-      const { shouldAuthorized, shouldGuest } = route
+      const { shouldAuthorized, shouldGuest } = route;
 
       if ((isAuthorized && shouldAuthorized)
         || (!isAuthorized && shouldGuest)
@@ -36,4 +36,4 @@ export const initRouter = (router: CoreRouter, store: Store<AppState>) => {
       document.title = `Messenger / ${Page.componentName}`;
     }
   });
-}
+};

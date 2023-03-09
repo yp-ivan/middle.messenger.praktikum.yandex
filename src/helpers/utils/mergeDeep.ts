@@ -16,4 +16,4 @@ export const mergeDeep = (lhs: Indexed, rhs: Indexed): Indexed => {
   }
 
   return lhs;
-}
+};

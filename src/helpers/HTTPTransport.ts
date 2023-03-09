@@ -5,14 +5,14 @@ export enum METHODS {
   DELETE = 'DELETE'
 }
 
-type KeyValueString = Record<string, string>;
+export type RequestData = Document | XMLHttpRequestBodyInit | null;
 
-type Options = {
+export interface RequestOptions {
   method: METHODS;
   headers?: KeyValueString;
-  data?: Document | XMLHttpRequestBodyInit | null;
+  data?: RequestData;
   timeout?: number;
-};
+}
 
 class HTTPTransport {
   get = (url: string, options = {}) => this.request(url, { ...options, method: METHODS.GET });
@@ -34,7 +34,7 @@ class HTTPTransport {
     return keys.reduce((result, key: string, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
   }
 
-  request = (url: string, options: Options) => {
+  request = (url: string, options: RequestOptions) => {
     const {
       method,
       headers = {},
