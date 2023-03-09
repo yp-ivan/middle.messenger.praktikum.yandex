@@ -13,7 +13,7 @@ import './chatBox.scss';
 interface ChatBoxProps {
   store: Store<AppState>;
   user: User;
-  ws: Nullable<WSTransport>;
+  ws: WSTransport;
   chat: Nullable<Chat>;
   chatId: () => number;
   onDeleteChat?: (e: Event) => void;
