@@ -57,7 +57,10 @@ export const addUsersChat = async (
   state: AppState,
   action: UsersChatRequestData
 ) => {
-  await chatAPI.addUsersChat(action);
+  const response = await chatAPI.addUsersChat(action);
+  if (apiHasError(response)) {
+    alert('Ошибка добавления пользователя.');
+  }
 };
 
 export const deleteUsersChat = async (
@@ -65,7 +68,10 @@ export const deleteUsersChat = async (
   state: AppState,
   action: UsersChatRequestData
 ) => {
-  await chatAPI.deleteUsersChat(action);
+  const response = await chatAPI.deleteUsersChat(action);
+  if (apiHasError(response)) {
+    alert('Ошибка удаления пользователя.');
+  }
 };
 
 export const tokenChat = async (
