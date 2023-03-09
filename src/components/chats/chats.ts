@@ -40,20 +40,24 @@ export class Chats extends Block<ChatsProps> {
           onClick=onCreateChat
         }}}
         <hr class="hr_chat-sep">
-          {{#each chats}}
-            {{#with this}}
-              {{{ChatsItem
-                chatId=id
-                name=title
-                avatar=avatar
-                lastMessage=lastMessage.content
-                time=lastMessage.time
-                unreadCount=unreadCount
-              }}}
-            {{/with}}
-          {{else}}
-            <div class="no-messages">Нет чатов</div>
-          {{/each}}
+        {{#if chats}}
+          <div class="chats-list">
+            {{#each chats}}
+              {{#with this}}
+                {{{ChatsItem
+                  chatId=id
+                  name=title
+                  avatar=avatar
+                  lastMessage=lastMessage.content
+                  time=lastMessage.time
+                  unreadCount=unreadCount
+                }}}
+              {{/with}}
+            {{/each}}
+          </div>
+        {{else}}
+          <div class="no-messages">Нет чатов</div>
+        {{/if}}
       </div>
     `;
   }

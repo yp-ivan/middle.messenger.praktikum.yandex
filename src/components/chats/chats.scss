@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 // Форма поиска чатов
@@ -24,10 +25,14 @@
 }
 
 .chats-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   overflow-y: auto;
 }
 
 .btn_add-chat {
+  flex-shrink: 0;
   display: block;
   margin: 10px auto;
 }
