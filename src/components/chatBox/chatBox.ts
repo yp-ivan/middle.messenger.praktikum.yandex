@@ -64,25 +64,29 @@ class ChatBox extends Block<ChatBoxProps> {
   onAddUserChat = (e: Event) => {
     const chatId = this.props.chatId();
     const userId = parseInt(prompt('Добавить пользователя. Ввести ID пользователя.', '') || '', 10);
-    if (chatId && userId) {
-      const payload: UsersChatRequestData = {
-        users: [userId],
-        chatId
-      };
-      this.props.store.dispatch(addUsersChat, payload);
+    if (!userId || !chatId) {
+      alert('Ошибка добавления пользователя.\nНужно вводить ID пользователя.');
+      return;
     }
+    const payload: UsersChatRequestData = {
+      users: [userId],
+      chatId
+    };
+    this.props.store.dispatch(addUsersChat, payload);
   };
 
   onDeleteUserChat = (e: Event) => {
     const chatId = this.props.chatId();
     const userId = parseInt(prompt('Удалить пользователя. Ввести ID пользователя.', '') || '', 10);
-    if (chatId && userId) {
-      const payload: UsersChatRequestData = {
-        users: [userId],
-        chatId
-      };
-      this.props.store.dispatch(deleteUsersChat, payload);
+    if (!userId || !chatId) {
+      alert('Ошибка удаления пользователя.\nНужно вводить ID пользователя.');
+      return;
     }
+    const payload: UsersChatRequestData = {
+      users: [userId],
+      chatId
+    };
+    this.props.store.dispatch(deleteUsersChat, payload);
   };
 
   onSendMessage = (e: Event) => {
