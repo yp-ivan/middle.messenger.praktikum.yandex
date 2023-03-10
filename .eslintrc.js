@@ -37,12 +37,16 @@ module.exports = {
     '@typescript-eslint/quotes': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-use-before-define': ['warn'],
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
     'no-restricted-exports': 'off',
     'object-curly-newline': 'off',
     'no-underscore-dangle': 'off',
     'import/first': 'off',
-    'no-plusplus': 'off'
+    'no-plusplus': 'off',
+    'no-alert': 'off',
+    'no-use-before-define': 'off',
+    'arrow-body-style': ['warn']
   }
 }

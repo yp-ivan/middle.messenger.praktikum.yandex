@@ -1,1 +1,1 @@
-export { InputWrap as default } from './inputWrap';
+export { InputWrap } from './inputWrap';

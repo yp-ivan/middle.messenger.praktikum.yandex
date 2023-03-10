@@ -11,12 +11,12 @@ interface ButtonBaseProps {
 }
 
 interface ButtonProps extends ButtonBaseProps {
-  onClick?: FuncProp
+  onClick?: (e: Event) => void;
 }
 
 interface ButtonSuperProps extends ButtonBaseProps {
   events: {
-    click?: FuncProp
+    click?: (e: Event) => void;
   }
 }
 

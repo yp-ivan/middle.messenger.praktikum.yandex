@@ -1,26 +1,76 @@
-import Block from 'core/Block';
-import { getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { Block, CoreRouter, Store } from 'core';
+import { withUser, withRouter, withStore } from 'helpers';
+import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { UpdatePasswordRequestData } from 'api/user';
+import { updatePassword } from 'services/user';
 
 import './profile.scss';
 
-export class ProfilePasswordPage extends Block {
-  constructor() {
-    super();
+type ProfilePasswordPageProps = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  user: User;
+  onSubmit: (e: Event) => void;
+  formError: () => string;
+};
+
+class ProfilePasswordPage extends Block<ProfilePasswordPageProps> {
+  static componentName = 'Изменение пароля';
+
+  constructor(props: ProfilePasswordPageProps) {
+    super(props);
     this.setProps({
-      onSubmit: (e: FocusEvent) => {
+      formError: () => this.state.formError || this.props.store.getState().formErrors?.updatePassword || '',
+      onSubmit: (e: Event) => {
         e.preventDefault();
-        validateForm(this.refs);
-        getFormValues(this.refs, true);
+        const values = getFormKeyValues(getFormValues(this.refs));
+        const isValid = validateForm(this.refs);
+
+        if (isValid && this.validateFormPassword(values)) {
+          const updatePasswordData: UpdatePasswordRequestData = {
+            oldPassword: values.oldPassword || '',
+            newPassword: values.newPassword || ''
+          };
+
+          const nextState = {
+            values: updatePasswordData
+          };
+
+          this.setState(nextState);
+
+          this.props.store.dispatch(updatePassword, updatePasswordData);
+        }
       }
     });
   }
 
+  private validateFormPassword(values: Indexed): boolean {
+    const formErrors: string[] = [];
+    if (values.oldPassword === values.newPassword) {
+      formErrors.push('Старый и новый пароль не должны совпадать.');
+    }
+    if (values.newPassword !== values.newPasswordConfirm) {
+      formErrors.push('"Новый пароль" и "Повторите новый пароль" не совпадают.');
+    }
+    this.setState({ formError: formErrors.join(' ') });
+    return !formErrors.length;
+  }
+
+  protected getStateFromProps() {
+    this.state = {
+      values: {},
+      formError: ''
+    };
+  }
+
   render() {
+    const { user } = this.props;
+
     // language=hbs
     return `
       <div class="fbox">
 
-        {{{Link text="" to="/profile" className="profile__back"}}}
+        {{{Link text="" to="settings" className="profile__back"}}}
 
         <main class="profile">
 
@@ -28,7 +78,11 @@ export class ProfilePasswordPage extends Block {
 
             <form>
 
-              {{{Avatar url="" className="profile-avatar"}}}
+              <div class="profile-avatar">
+                {{{Avatar url="${user.avatar}"}}}
+              </div>
+
+              {{{Error value=formError}}}
 
               <div class="profile-list">
                 {{{InputWrap
@@ -37,7 +91,7 @@ export class ProfilePasswordPage extends Block {
                     type="password"
                     value=""
                     required=true
-                    validateRule="password"
+                    validateRule="notEmpty"
                     ref="oldPasswordInput"
                 }}}
                 {{{InputWrap
@@ -79,3 +133,5 @@ export class ProfilePasswordPage extends Block {
     `;
   }
 }
+
+export default withUser(withRouter(withStore(ProfilePasswordPage)));

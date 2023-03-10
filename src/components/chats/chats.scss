@@ -1,0 +1,38 @@
+.chat-aside__chats {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+// Форма поиска чатов
+.form_channels-search {
+  .form-group {
+    margin: 0 0 10px;
+    padding: 0 10px;
+  }
+  .form-control_search {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    background: var(--color-lightgray);
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+  }
+}
+
+.chats-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.btn_add-chat {
+  flex-shrink: 0;
+  display: block;
+  margin: 10px auto;
+}

@@ -1,0 +1,76 @@
+// Блок профиля в чате
+.chat-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &__info {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: end;
+    flex-grow: 1;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+}
+
+// Форма отправки сообщения
+.chat__send-message {
+  display: flex;
+  flex-shrink: 0;
+  min-height: 54px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border-color);
+
+  .form_send-message {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    .form-group {
+      width: 100%;
+      margin: 0;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 34px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 16px;
+      outline: none;
+      background-color: var(--color-lightgray);
+      font-size: inherit;
+    }
+  }
+
+  .btn_send-message {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    border: none;
+    border-radius: 16px;
+    outline: none;
+    background: url("../../assets/ico-arrow.svg") center no-repeat;
+    transform: rotate(180deg);
+    cursor: pointer;
+  }
+}

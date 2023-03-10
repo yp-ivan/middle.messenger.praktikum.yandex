@@ -1,18 +1,18 @@
-enum METHODS {
+export enum METHODS {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE'
 }
 
-type KeyValueString = Record<string, string>;
+export type RequestData = Document | XMLHttpRequestBodyInit | null;
 
-type Options = {
-  method?: METHODS;
+export interface RequestOptions {
+  method: METHODS;
   headers?: KeyValueString;
-  data?: Document | XMLHttpRequestBodyInit | null;
+  data?: RequestData;
   timeout?: number;
-};
+}
 
 class HTTPTransport {
   get = (url: string, options = {}) => this.request(url, { ...options, method: METHODS.GET });
@@ -23,32 +23,40 @@ class HTTPTransport {
 
   delete = (url: string, options = {}) => this.request(url, { ...options, method: METHODS.DELETE });
 
-  qs(data?: KeyValueString) {
+  qs(data?: KeyValueString | null) {
     if (typeof data !== 'object') {
       throw new Error('Data must be object');
+    }
+    if (data === null) {
+      return '';
     }
     const keys = Object.keys(data);
     return keys.reduce((result, key: string, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
   }
 
-  request = (url: string, options: Options) => {
+  request = (url: string, options: RequestOptions) => {
     const {
-      method = METHODS.GET,
+      method,
       headers = {},
-      data,
+      data = null,
       timeout = 5000
     } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      const fullUrl = url + (method === METHODS.GET) ? this.qs(data as unknown as KeyValueString) : '';
+      let fullUrl = url;
+      if (method === METHODS.GET) {
+        fullUrl += this.qs(data as unknown as KeyValueString);
+      }
 
       xhr.open(method, fullUrl);
 
       if (timeout) {
         xhr.timeout = timeout;
       }
+
+      xhr.withCredentials = true;
 
       Object.keys(headers).forEach((header) => {
         xhr.setRequestHeader(header, headers[header]);
@@ -60,14 +68,16 @@ class HTTPTransport {
 
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
-          reject(xhr);
-        } else {
           resolve(xhr);
+        } else {
+          reject(xhr);
         }
       };
 
       if (method === METHODS.GET) {
         xhr.send();
+      } else if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
+        xhr.send(JSON.stringify(data));
       } else {
         xhr.send(data);
       }

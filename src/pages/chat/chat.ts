@@ -1,58 +1,37 @@
-import Block from 'core/Block';
+import { Block, CoreRouter, Store } from 'core';
+import { withRouter, withStore } from 'helpers';
+import { getChats } from 'services/chat';
 
 import './chat.scss';
 
-export class Chat extends Block {
+type ChatPageProps = {
+  router: CoreRouter;
+  store: Store<AppState>;
+};
+
+class ChatPage extends Block<ChatPageProps> {
+  static componentName = 'Чат';
+
+  constructor(props: ChatPageProps) {
+    super(props);
+    this.props.store.dispatch(getChats, {});
+  }
+
   render() {
     // language=hbs
     return `
       <div class="fbox">
-
-        <aside class="chat__channels">
-
-          <div>
-            <div class="profile-link">
-              {{{Link text="Профиль →" to="/profile"}}}
-            </div>
-
-            <form class="form_channels-search">
-              <div class="form-group">
-                <input type="search" name="search" class="form-control_search" placeholder="Поиск" required>
-              </div>
-            </form>
+        <aside class="chat-aside">
+          <div class="chat-aside__profile">
+            {{{Link text="Профиль →" to="settings"}}}
           </div>
-
-          {{{Channels}}}
-
+          <hr class="hr_chat-sep">
+          {{{Chats}}}
         </aside>
-
-        <main class="chat__messages">
-
-          {{#if channelSelected}}
-
-            <div class="no-messages">Выберите чат, чтобы отправить сообщение</div>
-
-          {{else}}
-
-            <div class="chat__profile">
-              {{{Avatar url="https://i.stack.imgur.com/N8fPi.jpg?s=64&g=1" className="chat__profile__avatar"}}}
-              <div class="chat__profile__name">Петр</div>
-            </div>
-
-            {{{Messages}}}
-
-            <div class="chat__send-message">
-              <form class="form_send-message">
-                <input type="text" name="message" class="form-control_message" placeholder="Сообщение">
-                <button type="submit" class="btn_send-message"></button>
-              </form>
-            </div>
-
-          {{/if}}
-
-        </main>
-
+        {{{ChatBox}}}
       </div>
     `;
   }
 }
+
+export default withRouter(withStore(ChatPage));

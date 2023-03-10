@@ -1,7 +1,7 @@
 .form-error {
   margin-top: 0.2rem;
   font-size: 0.7rem;
-  color: #ff2f2f;
+  color: var(--color-error);
   &:empty {
     display: none;
   }
