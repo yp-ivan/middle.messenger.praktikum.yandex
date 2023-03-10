@@ -4,7 +4,7 @@ interface ApiRequestOptions extends RequestOptions {
   path: string;
 }
 
-export function request<T extends any>({
+export function request<T>({
   method,
   path,
   headers,
@@ -19,16 +19,28 @@ export function request<T extends any>({
   )
     // @ts-ignore
     .then((response: XMLHttpRequest) => {
-      const isJson = response.getResponseHeader('content-type')?.includes('application/json');
-      if (isJson) {
-        return JSON.parse(response.responseText);
-      }
-      if (response.responseText.length && response.responseText !== 'OK') {
+      try {
+        const isJson = response.getResponseHeader('content-type')?.includes('application/json');
+        if (isJson) {
+          return JSON.parse(response.responseText);
+        }
+        if (response.responseText.length && response.responseText !== 'OK') {
+          return { reason: response.responseText };
+        }
+      } catch (e) {
         return { reason: response.responseText };
       }
       return {};
     })
-    .then((data) => data as T);
+    .then((data2) => data2 as T)
+    .catch((err) => {
+      console.error(`${method} [${path}]: ${err.responseText}`, err);
+      try {
+        return JSON.parse(err.responseText);
+      } catch (e) {
+        return { reason: err.responseText };
+      }
+    });
 }
 
 request.get = <T>(path: string, data?: RequestData, headers?: KeyValueString) => request<T>({ method: METHODS.GET, path, headers, data });
