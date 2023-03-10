@@ -1,34 +1,38 @@
-import Block from 'core/Block';
+import { Block, CoreRouter } from 'core';
+import { withRouter } from 'helpers';
 
 import './link.scss';
 
 interface LinkBaseProps {
+  router: CoreRouter;
   text: string;
   to: string;
+  href?: string;
   className?: string;
 }
 
 interface LinkProps extends LinkBaseProps {
-  onClick?: FuncProp
+  onClick?: (e: Event) => void;
 }
 interface LinkSuperProps extends LinkBaseProps {
   events: {
-    click?: FuncProp
+    click?: (e: Event) => void;
   }
 }
 
-export class Link extends Block<LinkProps> {
+class Link extends Block<LinkProps> {
   static componentName = 'Link';
 
   constructor(props: LinkProps) {
-    const onClick = (e: MouseEvent) => {
-      console.log(props.to);
-      window.location.href = './';
+    const onClick = (e: Event) => {
+      props.router.go(props.to);
       e.preventDefault();
     };
+    const href = props.router.getPath(props.to);
 
     super({
       ...props,
+      href,
       events: {
         click: onClick
       }
@@ -37,6 +41,8 @@ export class Link extends Block<LinkProps> {
 
   render() {
     // language=hbs
-    return `<a href="{{to}}" class="{{className}}">{{text}}</a>`;
+    return `<a href="{{href}}" class="{{className}}">{{text}}</a>`;
   }
 }
+
+export default withRouter(Link);

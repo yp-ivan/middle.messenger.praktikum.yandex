@@ -2,45 +2,42 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-interface BlockMeta<P = any> {
-  props: P;
-}
-
 type Events = Values<typeof Block.EVENTS>;
 type EventFunc = Record<string, () => void>;
+
+export interface BlockClass<P extends Record<string, any>> extends Function {
+  new (props: P): Block<P>;
+  componentName?: string;
+}
 
 export default class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render'
   } as const;
 
-  static componentName: string;
+  public static componentName: string;
 
   public id = nanoid(6);
-  private readonly _meta: BlockMeta;
 
   protected _element: Nullable<HTMLElement> = null;
-  protected readonly props: P;
+  protected props: Readonly<P>;
   protected children: { [id: string]: Block } = {};
 
   eventBus: () => EventBus<Events>;
 
   protected state: any = {};
-  protected refs: { [key: string]: Block } = {};
+  protected refs: { [key: string]: HTMLElement } = {};
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>();
 
-    this._meta = {
-      props
-    };
-
     this.getStateFromProps(props);
 
-    this.props = this._makePropsProxy(props || {} as P);
+    this.props = props || ({} as P);
     this.state = this._makePropsProxy(this.state);
 
     this.eventBus = () => eventBus;
@@ -50,10 +47,26 @@ export default class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT, this.props);
   }
 
+  /**
+   * Хелпер, который проверяет, находится ли элемент в DOM дереве
+   * И есть нет, триггерит событие COMPONENT_WILL_UNMOUNT
+   */
+  _checkInDom() {
+    const elementInDOM = document.body.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDom(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+  }
+
   _registerEvents(eventBus: EventBus<Events>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -61,7 +74,7 @@ export default class Block<P extends Record<string, any> = any> {
     this._element = this._createDocumentElement('div');
   }
 
-  protected getStateFromProps(props: Undefined<P>): void {
+  protected getStateFromProps(props?: P): void {
     this.state = {};
   }
 
@@ -71,10 +84,20 @@ export default class Block<P extends Record<string, any> = any> {
   }
 
   _componentDidMount(props: P) {
+    this._checkInDom();
+
     this.componentDidMount(props);
   }
 
   componentDidMount(props: P) {
+  }
+
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {
   }
 
   _componentDidUpdate(oldProps: P, newProps: P) {
@@ -89,12 +112,17 @@ export default class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  setProps = (nextProps: P) => {
-    if (!nextProps) {
+  setProps = (nextPartialProps: Partial<P>) => {
+    if (!nextPartialProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    const prevProps = this.props;
+    const nextProps = { ...prevProps, ...nextPartialProps };
+
+    this.props = nextProps;
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
   setState = (nextState: any) => {
@@ -138,7 +166,7 @@ export default class Block<P extends Record<string, any> = any> {
     return this.element!;
   }
 
-  _makePropsProxy(props: Undefined<P>): any {
+  _makePropsProxy(props?: P): any {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -169,7 +197,7 @@ export default class Block<P extends Record<string, any> = any> {
   }
 
   _removeEvents() {
-    const { events }: { events : EventFunc } = this.props as any;
+    const { events } = this.props;
 
     if (!events || !this._element) {
       return;
@@ -181,7 +209,7 @@ export default class Block<P extends Record<string, any> = any> {
   }
 
   _addEvents() {
-    const { events }: { events : EventFunc } = this.props as any;
+    const { events } = this.props;
 
     if (!events) {
       return;
@@ -199,7 +227,12 @@ export default class Block<P extends Record<string, any> = any> {
      * Рендерим шаблон
      */
     const template = Handlebars.compile(this.render());
-    fragment.innerHTML = template({ ...this.state, ...this.props, children: this.children, refs: this.refs });
+    fragment.innerHTML = template({
+      ...this.state,
+      ...this.props,
+      children: this.children,
+      refs: this.refs
+    });
 
     /**
      * Заменяем заглушки на компоненты
@@ -236,13 +269,5 @@ export default class Block<P extends Record<string, any> = any> {
      * Возвращаем фрагмент
      */
     return fragment.content;
-  }
-
-  show() {
-    this.getContent().style.display = 'block';
-  }
-
-  hide() {
-    this.getContent().style.display = 'none';
   }
 }

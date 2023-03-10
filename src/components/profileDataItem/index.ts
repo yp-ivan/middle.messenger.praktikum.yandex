@@ -1,1 +1,1 @@
-export { ProfileDataItem as default } from './profileDataItem';
+export { ProfileDataItem } from './profileDataItem';

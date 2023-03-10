@@ -1,3 +1,3 @@
-export { ProfilePage as default } from './profile';
-export { ProfileEditPage } from './profile-edit';
-export { ProfilePasswordPage } from './profile-password';
+export { default } from './profile';
+export { default as ProfileEditPage } from './profile-edit';
+export { default as ProfilePasswordPage } from './profile-password';

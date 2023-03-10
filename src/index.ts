@@ -1,39 +1,39 @@
 require('babel-core/register');
 
-import { renderDOM, registerComponent } from 'core';
+import { registerComponent, PathRouter, Store } from 'core';
+import { initApp } from 'services/initApp';
+import { defaultState } from 'store';
+import { initRouter } from 'router';
+import { WSTransport } from 'helpers/WSTransport';
 
 import './styles/all.scss';
 
-import ErrorBox from 'components/errorBox';
-import Modal from 'components/modal';
-import Link from 'components/link';
-import Button from 'components/button';
-import Input from 'components/input';
-import InputError from 'components/inputError';
-import InputWrap from 'components/inputWrap';
-import Avatar from 'components/avatar';
-import Channels from 'components/channels';
-import ChannelsItem from 'components/channels/channelsItem';
-import Messages from 'components/messages';
-import MessagesItem from 'components/messages/messagesItem';
-import ProfileDataItem from 'components/profileDataItem';
+import * as components from 'components';
 
-registerComponent(ErrorBox);
-registerComponent(Modal);
-registerComponent(Link);
-registerComponent(Button);
-registerComponent(Input);
-registerComponent(InputError);
-registerComponent(InputWrap);
-registerComponent(Avatar);
-registerComponent(Channels);
-registerComponent(ChannelsItem);
-registerComponent(Messages);
-registerComponent(MessagesItem);
-registerComponent(ProfileDataItem);
-
-import HomePage from 'pages/home';
+Object.values(components).forEach((Component: any) => {
+  registerComponent(Component);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderDOM(new HomePage());
+  const store = new Store<AppState>(defaultState);
+  const router = new PathRouter();
+  const ws = new WSTransport();
+
+  /**
+   * Помещаем роутер и стор в глобальную область для доступа в хоках with*
+   * @warning Не использовать такой способ на реальный проектах
+   */
+  window.router = router;
+  window.store = store;
+  window.ws = ws;
+
+  store.on('changed', (prevState, nextState) => {
+    if (process.env.DEBUG) {
+      console.debug('store updated', nextState);
+    }
+  });
+
+  initRouter(router, store);
+
+  store.dispatch(initApp);
 });

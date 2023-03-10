@@ -24,7 +24,7 @@ export class ErrorBox extends Block<ErrorBoxProps> {
         <h1 class="error__title">{{code}}</h1>
         <p class="error__text">{{text}}</p>
         <div class="error__link-back">
-          {{{Link text="Назад к чатам" to="/index"}}}
+          {{{Link text="На карту сайта" to="map"}}}
         </div>
       </div>
     `;

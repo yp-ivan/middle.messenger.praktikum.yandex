@@ -1,0 +1,38 @@
+.chat-message {
+  flex-shrink: 0;
+  position: relative;
+  max-width: 40%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 11px 11px 11px 25px;
+  overflow: hidden;
+
+  &_in {
+    align-self: start;
+    border-top-left-radius: 0;
+    background-color: #f8f8f8;
+  }
+  &_out {
+    align-self: end;
+    border-bottom-right-radius: 0;
+    background-color: #e4edfd;
+  }
+
+  &__text {
+    overflow-x: auto;
+  }
+
+  &__time {
+    margin-top: 5px;
+    text-align: end;
+    color: var(--color-gray);
+    font-size: 9px;
+  }
+
+  p {
+    margin: 0;
+    + p {
+      margin-top: 11px;
+    }
+  }
+}

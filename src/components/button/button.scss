@@ -3,7 +3,7 @@
   padding: 0.5rem 0.75rem;
   font-size: 13px;
   line-height: 1.5;
-  color: #212529;
+  color: var(--color-text3);
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -14,10 +14,14 @@
   background-color: transparent;
 }
 
+.btn_sm {
+  padding: 0.2rem 0.5rem;
+}
+
 .btn_primary {
   color: var(--color-white);
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: var(--color-link);
+  border-color: var(--color-link);
   &:hover {
     color: var(--color-white);
     background-color: #0b5ed7;
@@ -26,5 +30,21 @@
   &:active {
     background-color: #0a58ca;
     border-color: #0a53be;
+  }
+}
+
+.btn_link {
+  padding: 0;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  vertical-align: baseline;
+  color: var(--color-link);
+  &.color-red {
+    color: var(--color-red);
+  }
+  &:hover {
+    color: var(--color-link-hover);
   }
 }

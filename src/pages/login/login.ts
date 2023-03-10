@@ -1,29 +1,67 @@
-import Block from 'core/Block';
-import { getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { Block, CoreRouter, Store } from 'core';
+import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
+import { withRouter, withStore } from 'helpers';
+import { login } from 'services/auth';
+import { LoginRequestData } from 'api/auth';
 
-export class LoginPage extends Block {
-  constructor() {
-    super();
+type LoginPageProps = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  onLogin: (e: Event) => void;
+  formError?: () => string | null;
+};
+
+class LoginPage extends Block<LoginPageProps> {
+  static componentName = 'Вход';
+
+  constructor(props: LoginPageProps) {
+    super(props);
     this.setProps({
-      onSubmit: (e: FocusEvent) => {
+      formError: () => this.props.store.getState().formErrors?.login || '',
+      onLogin: (e: Event) => {
         e.preventDefault();
-        validateForm(this.refs);
-        getFormValues(this.refs, true);
+        const isValid = validateForm(this.refs);
+        const values = getFormKeyValues(getFormValues(this.refs));
+
+        if (isValid) {
+          const loginData: LoginRequestData = {
+            login: values.login || '',
+            password: values.password || ''
+          };
+          const nextState = {
+            values: loginData
+          };
+          this.setState(nextState);
+          this.props.store.dispatch(login, loginData);
+        }
       }
     });
   }
 
+  protected getStateFromProps() {
+    this.state = {
+      values: {
+        login: '',
+        password: ''
+      }
+    };
+  }
+
   render() {
+    const { values } = this.state;
+
     // language=hbs
     return `
       {{#Modal title="Вход" }}
+        {{{Error value=formError}}}
         <form>
           {{{InputWrap
               name="login"
               label="Логин"
+              value="${values.login}"
               type="text"
               required=true
-              validateRule="login"
+              validateRule="notEmpty"
               ref="loginInput"
           }}}
           {{{InputWrap
@@ -31,7 +69,7 @@ export class LoginPage extends Block {
               label="Пароль"
               type="password"
               required=true
-              validateRule="password"
+              validateRule="notEmpty"
               ref="passwordInput"
           }}}
           <div class="form-group form-group_btns">
@@ -39,14 +77,16 @@ export class LoginPage extends Block {
                 text="Войти"
                 type="submit"
                 className="btn_primary w-100"
-                onClick=onSubmit
+                onClick=onLogin
             }}}
           </div>
           <div class="form-group text-center">
-            {{{Link text="Нет аккаунта?" to="/register"}}}
+            {{{Link text="Нет аккаунта?" to="sign-up"}}}
           </div>
         </form>
       {{/Modal}}
     `;
   }
 }
+
+export default withRouter(withStore(LoginPage));
