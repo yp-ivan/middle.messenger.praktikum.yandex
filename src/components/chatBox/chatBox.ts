@@ -62,10 +62,14 @@ class ChatBox extends Block<ChatBoxProps> {
   };
 
   onAddUserChat = (e: Event) => {
+    const text = prompt('Добавление пользователя\n\nВвести ID пользователя', '');
+    if (text === null) {
+      return;
+    }
+    const userId = parseInt(text, 10);
     const chatId = this.props.chatId();
-    const userId = parseInt(prompt('Добавить пользователя. Ввести ID пользователя.', '') || '', 10);
     if (!userId || !chatId) {
-      alert('Ошибка добавления пользователя.\nНужно вводить ID пользователя.');
+      alert('Ошибка добавления пользователя\n\nНужно вводить ID пользователя.');
       return;
     }
     const payload: UsersChatRequestData = {
@@ -76,10 +80,14 @@ class ChatBox extends Block<ChatBoxProps> {
   };
 
   onDeleteUserChat = (e: Event) => {
+    const text = prompt('Удаление пользователя\n\nВвести ID пользователя', '');
+    if (text === null) {
+      return;
+    }
+    const userId = parseInt(text, 10);
     const chatId = this.props.chatId();
-    const userId = parseInt(prompt('Удалить пользователя. Ввести ID пользователя.', '') || '', 10);
     if (!userId || !chatId) {
-      alert('Ошибка удаления пользователя.\nНужно вводить ID пользователя.');
+      alert('Ошибка удаления пользователя\n\nНужно вводить ID пользователя.');
       return;
     }
     const payload: UsersChatRequestData = {

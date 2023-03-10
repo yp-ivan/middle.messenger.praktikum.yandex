@@ -24,9 +24,14 @@ export class Chats extends Block<ChatsProps> {
   onCreateChat = (e: Event) => {
     e.preventDefault();
     const title = prompt('Создание чата', '');
-    if (title) {
-      this.props.store.dispatch(createChat, { title });
+    if (title === null) {
+      return;
     }
+    if (!title) {
+      alert('Ошибка создания чата');
+      return;
+    }
+    this.props.store.dispatch(createChat, { title });
   };
 
   render() {
