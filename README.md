@@ -11,6 +11,9 @@
 #### 3 спринт
 Добавление роутинга, запросов к API. Использование WebSocket. Защита от XSS и DOS.
 
+#### 4 спринт
+Перевод проекта на WebPack. Монтирование проекта в Docker. Написание тестов модулей.
+
 ## Дизайн
 
 [Макет в Figma](https://www.figma.com/file/RyCIabsvFXGjxt9MkMcJdj/Messenger-Yandex.Praktikum)
