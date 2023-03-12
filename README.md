@@ -27,8 +27,9 @@
 
 ## Тесты кода
 
-- `npm run lint` — запуск ESLint
-- `npm run stylelint` — запуск StyleLint
+- `npm run check:eslint` — запуск ESLint
+- `npm run check:stylelint` — запуск StyleLint
+- `npm run check` — запуск всех тестов `check:*`
 
 ### Deploy on Netlify
 
