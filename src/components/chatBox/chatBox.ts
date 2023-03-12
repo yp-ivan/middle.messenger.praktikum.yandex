@@ -1,5 +1,5 @@
-import { Block, Store } from 'core';
-import { withStore, withUser, withWS } from 'helpers';
+import { Block, Store } from 'core/index';
+import { withStore, withUser, withWS } from 'helpers/index';
 import { getFormKeyValues, getFormValues } from 'helpers/validate/validateForm';
 import { WSTransport } from 'helpers/WSTransport';
 import { UsersChatRequestData } from 'api/chat';

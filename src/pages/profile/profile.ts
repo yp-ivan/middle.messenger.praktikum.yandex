@@ -1,5 +1,5 @@
-import { Block, CoreRouter, Store } from 'core';
-import { withUser, withRouter, withStore } from 'helpers';
+import { Block, CoreRouter, Store } from 'core/index';
+import { withUser, withRouter, withStore } from 'helpers/index';
 import { logout } from 'services/auth';
 
 import './profile.scss';
