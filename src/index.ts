@@ -5,6 +5,7 @@ import { initApp } from 'services/initApp';
 import { defaultState } from 'store/index';
 import { initRouter } from 'router/index';
 import { WSTransport } from 'helpers/WSTransport';
+import config from 'data/config';
 
 import './styles/all.scss';
 
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.ws = ws;
 
   store.on('changed', (prevState, nextState) => {
-    if (process.env.DEBUG) {
+    if (config.debug) {
       console.debug('store updated', nextState);
     }
   });

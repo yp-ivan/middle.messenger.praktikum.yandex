@@ -1,10 +1,12 @@
+import config from 'data/config';
+
 export class WSTransport {
   private _userId = 0;
   private _chatId = 0;
   private _token = '';
 
   private _socket: Nullable<WebSocket> = null;
-  private readonly baseUrl = 'wss://ya-praktikum.tech/ws/chats';
+  private readonly baseUrl = config.apiWebsocket;
 
   private _pingTimer: Nullable<NodeJS.Timer> = null;
 
