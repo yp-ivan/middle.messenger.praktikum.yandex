@@ -1,4 +1,5 @@
 import HTTPTransport, { METHODS, RequestData, RequestOptions } from 'helpers/HTTPTransport';
+import config from 'data/config';
 
 interface ApiRequestOptions extends RequestOptions {
   path: string;
@@ -10,7 +11,7 @@ export function request<T>({
   headers,
   data }: ApiRequestOptions): Promise<T> {
   return HTTPTransport.request(
-    `${process.env.API_ENDPOINT}/${path}`,
+    `${config.apiEndpoint}/${path}`,
     {
       method,
       headers: headers || { 'Content-Type': 'application/json' },

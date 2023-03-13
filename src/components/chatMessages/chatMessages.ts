@@ -1,5 +1,5 @@
-import { Block, Store } from 'core';
-import { withStore, withUser } from 'helpers';
+import { Block, Store } from 'core/index';
+import { withStore, withUser } from 'helpers/index';
 import { removeQuote } from 'helpers/utils/escapeText';
 
 import './chatMessages.scss';

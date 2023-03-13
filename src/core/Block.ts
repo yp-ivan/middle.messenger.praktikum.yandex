@@ -30,7 +30,7 @@ export default class Block<P extends Record<string, any> = any> {
   eventBus: () => EventBus<Events>;
 
   protected state: any = {};
-  protected refs: { [key: string]: HTMLElement } = {};
+  protected refs: { [key: string]: Block } = {};
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -132,6 +132,14 @@ export default class Block<P extends Record<string, any> = any> {
 
     Object.assign(this.state, nextState);
   };
+
+  getProps() {
+    return this.props;
+  }
+
+  getRefs() {
+    return this.refs;
+  }
 
   get element() {
     return this._element;

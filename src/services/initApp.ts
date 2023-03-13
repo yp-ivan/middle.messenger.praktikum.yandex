@@ -1,6 +1,6 @@
 import { authAPI } from 'api/auth';
-import type { Dispatch } from 'core';
-import { transformUser, apiHasError } from 'helpers';
+import type { Dispatch } from 'core/index';
+import { transformUser, apiHasError } from 'helpers/index';
 
 export const initApp = async (dispatch: Dispatch<AppState>) => {
   try {

@@ -1,10 +1,12 @@
+import config from 'data/config';
+
 export class WSTransport {
   private _userId = 0;
   private _chatId = 0;
   private _token = '';
 
   private _socket: Nullable<WebSocket> = null;
-  private readonly baseUrl = 'wss://ya-praktikum.tech/ws/chats';
+  private readonly baseUrl = config.apiWebsocket;
 
   private _pingTimer: Nullable<NodeJS.Timer> = null;
 
@@ -113,22 +115,22 @@ export class WSTransport {
     this._counts = val;
   }
 
-  public addEvent<T = Event>(type: string, callback: (e: T) => void) {
-    this._socket?.addEventListener<T>(type, callback);
+  public addEvent<T extends keyof WebSocketEventMap>(type: T, callback: (e: WebSocketEventMap[T]) => void) {
+    this._socket?.addEventListener(type, callback);
   }
 
-  public removeEvent<T = Event>(type: string, callback: (e: T) => void) {
-    this._socket?.removeEventListener<T>(type, callback);
+  public removeEvent<T extends keyof WebSocketEventMap>(type: T, callback: (e: WebSocketEventMap[T]) => void) {
+    this._socket?.removeEventListener(type, callback);
   }
 
   private _addEvents() {
-    this.addEvent<Event>('open', this._handleOpen);
-    this.addEvent<CloseEvent>('close', this._handleClose);
+    this.addEvent('open', this._handleOpen);
+    this.addEvent('close', this._handleClose);
   }
 
   private _removeEvents() {
-    this.removeEvent<Event>('open', this._handleOpen);
-    this.removeEvent<CloseEvent>('close', this._handleClose);
+    this.removeEvent('open', this._handleOpen);
+    this.removeEvent('close', this._handleClose);
   }
 
   private _handleOpen(e: Event) {

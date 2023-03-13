@@ -1,5 +1,5 @@
-import { Store, renderDOM, CoreRouter } from 'core';
-import { getPageComponent, Pages } from 'helpers';
+import { Store, renderDOM, CoreRouter } from 'core/index';
+import { getPageComponent, Pages } from 'helpers/index';
 import { routes } from './routes';
 
 export const initRouter = (router: CoreRouter, store: Store<AppState>) => {

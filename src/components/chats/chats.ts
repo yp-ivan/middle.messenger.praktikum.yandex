@@ -1,5 +1,5 @@
-import { Block, Store } from 'core';
-import { withStore } from 'helpers';
+import { Block, Store } from 'core/index';
+import { withStore } from 'helpers/index';
 import { createChat } from 'services/chat';
 
 import './chats.scss';

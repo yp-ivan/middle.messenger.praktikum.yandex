@@ -1,5 +1,5 @@
-import { BlockClass } from 'core';
-import * as pages from 'pages';
+import { BlockClass } from 'core/index';
+import * as pages from 'pages/index';
 
 export enum Pages {
   Map = 'map',

@@ -1,5 +1,5 @@
-import { Block, Store } from 'core';
-import { withStore } from 'helpers';
+import { Block, Store } from 'core/index';
+import { withStore } from 'helpers/index';
 import { dateFormat } from 'helpers/utils/dateFormat';
 import { tokenChat } from 'services/chat';
 

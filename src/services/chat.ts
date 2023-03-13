@@ -1,5 +1,5 @@
-import type { Dispatch } from 'core';
-import { apiHasError } from 'helpers';
+import type { Dispatch } from 'core/index';
+import { apiHasError } from 'helpers/index';
 import { chatAPI, ChatsRequestData, CreateChatRequestData, DeleteChatRequestData, UsersChatRequestData } from 'api/chat';
 import { transformChat } from 'helpers/apiTransformers';
 

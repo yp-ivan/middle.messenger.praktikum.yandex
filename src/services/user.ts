@@ -1,7 +1,7 @@
 import { UpdatePasswordRequestData, UpdateProfileRequestData, userAPI } from 'api/user';
 import { UserDTO } from 'api/types';
-import type { Dispatch } from 'core';
-import { transformUser, apiHasError } from 'helpers';
+import type { Dispatch } from 'core/index';
+import { transformUser, apiHasError } from 'helpers/index';
 import { authAPI } from 'api/auth';
 
 const updateUserData = async (dispatch: Dispatch<AppState>) => {

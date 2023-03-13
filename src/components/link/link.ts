@@ -1,5 +1,5 @@
-import { Block, CoreRouter } from 'core';
-import { withRouter } from 'helpers';
+import { Block, CoreRouter } from 'core/index';
+import { withRouter } from 'helpers/index';
 
 import './link.scss';
 

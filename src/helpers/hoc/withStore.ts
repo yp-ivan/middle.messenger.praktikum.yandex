@@ -1,4 +1,4 @@
-import { BlockClass, Store } from 'core';
+import { BlockClass, Store } from 'core/index';
 import isEqual from 'helpers/utils/isEqual';
 
 type WithStateProps = { store: Store<AppState> };
@@ -19,6 +19,7 @@ export const withStore = <P extends WithStateProps, S = any>(WrappedBlock: Block
         const prevPropsFromState = mapStateToProps(prev);
         const nextPropsFromState = mapStateToProps(next);
 
+        // @ts-ignore
         if (isEqual(prevPropsFromState, nextPropsFromState)) {
           return;
         }

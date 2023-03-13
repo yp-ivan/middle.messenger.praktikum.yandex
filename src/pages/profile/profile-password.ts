@@ -1,5 +1,5 @@
-import { Block, CoreRouter, Store } from 'core';
-import { withUser, withRouter, withStore } from 'helpers';
+import { Block, CoreRouter, Store } from 'core/index';
+import { withUser, withRouter, withStore } from 'helpers/index';
 import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
 import { UpdatePasswordRequestData } from 'api/user';
 import { updatePassword } from 'services/user';

@@ -1,6 +1,6 @@
-import { Block, CoreRouter, Store } from 'core';
+import { Block, CoreRouter, Store } from 'core/index';
+import { withRouter, withStore } from 'helpers/index';
 import { getFormKeyValues, getFormValues, validateForm } from 'helpers/validate/validateForm';
-import { withRouter, withStore } from 'helpers';
 import { register } from 'services/auth';
 import { RegisterRequestData } from 'api/auth';
 
