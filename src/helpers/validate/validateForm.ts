@@ -18,7 +18,7 @@ const getType = (obj: Record<string, string | RegExp>, type: ValidateType) => {
     .flat()[1];
 };
 
-export const validateControl = (rules: ValidateItem[]): unknown | string => {
+export const validateControl = (rules: ValidateItem[]): string => {
   for (let i = 0; i < rules.length; i++) {
     const { rule, value } = rules[i];
     const ruleType = getType(ValidateRegex, rule);
@@ -26,16 +26,17 @@ export const validateControl = (rules: ValidateItem[]): unknown | string => {
       return (getType(errorsTexts, rule) as string);
     }
   }
+  return '';
 };
 
 export const validateForm = (refs: { [key: string]: Block }) => {
   let isValid = true;
-  Object.entries(refs).forEach((ref: unknown) => {
+  Object.entries(refs).forEach((ref) => {
     if (ref[0].endsWith('Input')) {
-      const { value }: { value: string } = ref[1].refs.inputRef.getContent() as HTMLInputElement;
-      const rule = ref[1].props.validateRule;
+      const { value }: { value: string } = ref[1].getRefs().inputRef.getContent() as HTMLInputElement;
+      const rule = (ref[1] as Block).getProps().validateRule;
       const error = validateControl([{ rule, value }]);
-      ref[1].refs.errorRef.setProps({
+      ref[1].getRefs().errorRef.setProps({
         text: error
       });
       if (error) {
@@ -46,12 +47,12 @@ export const validateForm = (refs: { [key: string]: Block }) => {
   return isValid;
 };
 
-export const getFormValues = (refs, printConsole = true) => {
+export const getFormValues = (refs: { [key: string]: Block }, printConsole = true) => {
   const values: FormValue[] = [];
-  Object.entries(refs).forEach((ref: unknown) => {
+  Object.entries(refs).forEach((ref) => {
     if (ref[0].endsWith('Input')) {
-      const { name }: { name: string } = ref[1].props;
-      const { value }: { value: string } = ref[1].refs.inputRef.getContent() as HTMLInputElement;
+      const { name } = ref[1].getProps();
+      const { value }: { value: string } = ref[1].getRefs().inputRef.getContent() as HTMLInputElement;
       values.push({ name, value });
     }
   });

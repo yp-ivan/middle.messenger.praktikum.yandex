@@ -5,7 +5,7 @@ export enum METHODS {
   DELETE = 'DELETE'
 }
 
-export type RequestData = Document | XMLHttpRequestBodyInit | null;
+export type RequestData = Record<string, any> | null;
 
 export interface RequestOptions {
   method: METHODS;
@@ -47,7 +47,7 @@ class HTTPTransport {
 
       let fullUrl = url;
       if (method === METHODS.GET) {
-        fullUrl += this.qs(data as unknown as KeyValueString);
+        fullUrl += this.qs(data as KeyValueString);
       }
 
       xhr.open(method, fullUrl);
@@ -79,6 +79,7 @@ class HTTPTransport {
       } else if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
         xhr.send(JSON.stringify(data));
       } else {
+        // @ts-ignore
         xhr.send(data);
       }
     });

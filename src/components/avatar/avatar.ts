@@ -1,4 +1,5 @@
 import Block from 'core/Block';
+import config from 'data/config';
 
 import './avatar.scss';
 
@@ -11,7 +12,7 @@ interface AvatarProps {
 export class Avatar extends Block<AvatarProps> {
   static componentName = 'Avatar';
 
-  static baseUrl = 'https://ya-praktikum.tech/api/v2/resources';
+  static baseUrl = config.apiResources;
 
   constructor(props: AvatarProps) {
     super(props);

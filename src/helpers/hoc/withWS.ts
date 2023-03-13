@@ -1,4 +1,4 @@
-import { BlockClass } from 'core';
+import { BlockClass } from 'core/index';
 import { WSTransport } from 'helpers/WSTransport';
 
 type WithWSProps = { ws: WSTransport };

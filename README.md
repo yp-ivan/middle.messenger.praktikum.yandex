@@ -11,6 +11,9 @@
 #### 3 спринт
 Добавление роутинга, запросов к API. Использование WebSocket. Защита от XSS и DOS.
 
+#### 4 спринт
+Перевод проекта на WebPack. Монтирование проекта в Docker. Написание тестов модулей.
+
 ## Дизайн
 
 [Макет в Figma](https://www.figma.com/file/RyCIabsvFXGjxt9MkMcJdj/Messenger-Yandex.Praktikum)
@@ -24,8 +27,9 @@
 
 ## Тесты кода
 
-- `npm run lint` — запуск ESLint
-- `npm run stylelint` — запуск StyleLint
+- `npm run check:eslint` — запуск ESLint
+- `npm run check:stylelint` — запуск StyleLint
+- `npm run check` — запуск всех тестов `check:*`
 
 ### Deploy on Netlify
 
