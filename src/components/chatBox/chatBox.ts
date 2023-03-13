@@ -107,7 +107,7 @@ class ChatBox extends Block<ChatBoxProps> {
   };
 
   onWSMessage(e: MessageEvent) {
-    let data: NullObject | [] = {};
+    let data: NullObject | ChatMessageDTO[] | ChatMessageDTO = {};
     try {
       data = JSON.parse(e.data);
       const { chatMessages } = this.props.store.getState();
@@ -117,7 +117,7 @@ class ChatBox extends Block<ChatBoxProps> {
           chatMessages.push(...this.addMessages(chatMessages, data.reverse()));
           needUpdate = true;
         } else if (data.type !== undefined && data.type === 'message') {
-          chatMessages.push(...this.addMessages(chatMessages, [data as ChatMessage]));
+          chatMessages.push(...this.addMessages(chatMessages, [data as ChatMessageDTO]));
           needUpdate = true;
         }
       }

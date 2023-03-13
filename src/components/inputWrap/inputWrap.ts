@@ -46,7 +46,7 @@ export class InputWrap extends Block<InputWrapProps> {
     const rule = this.props.validateRule;
     if (rule === undefined) return;
     const error = validateControl([{ rule, value }]);
-    this.refs.errorRef.setProps({
+    (this.refs.errorRef as unknown as Block).setProps({
       text: error,
       submitted: false
     });

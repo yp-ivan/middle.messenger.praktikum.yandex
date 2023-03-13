@@ -19,6 +19,7 @@ export const withStore = <P extends WithStateProps, S = any>(WrappedBlock: Block
         const prevPropsFromState = mapStateToProps(prev);
         const nextPropsFromState = mapStateToProps(next);
 
+        // @ts-ignore
         if (isEqual(prevPropsFromState, nextPropsFromState)) {
           return;
         }
