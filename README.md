@@ -23,14 +23,21 @@
 - `npm install` — установка node-пакетов
 - `npm run dev` — создание сборки для разработки
 - `npm run build` — создание продакшн-сборки
-- `npm run start` — создание продакшн-сборки и запуск Express-сервера
+- `npm run start` — режим отладки/разработки приложения с запуском сервера
+- `npm run serve` — запуск сервера
 
 ## Тесты кода
 
 - `npm run check:eslint` — запуск ESLint
 - `npm run check:stylelint` — запуск StyleLint
+- `npm run check:test` — запуск Jest
 - `npm run check` — запуск всех тестов `check:*`
 
-### Deploy on Netlify
+### Deploys
 
+#### Netlify
 https://yp-ivan-messenger.netlify.app/
+
+#### Render
+https://yp-ivan-messenger.onrender.com \
+https://yp-ivan-messenger-docker.onrender.com [docker]
