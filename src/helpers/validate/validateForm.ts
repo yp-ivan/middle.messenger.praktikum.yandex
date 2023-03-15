@@ -47,7 +47,7 @@ export const validateForm = (refs: { [key: string]: Block }) => {
   return isValid;
 };
 
-export const getFormValues = (refs: { [key: string]: Block }, printConsole = true) => {
+export const getFormValues = (refs: { [key: string]: Block }, printConsole = false) => {
   const values: FormValue[] = [];
   Object.entries(refs).forEach((ref) => {
     if (ref[0].endsWith('Input')) {
