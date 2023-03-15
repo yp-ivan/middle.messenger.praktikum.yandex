@@ -5,7 +5,7 @@ export enum METHODS {
   DELETE = 'DELETE'
 }
 
-export type RequestData = Record<string, any> | null;
+export type RequestData = Indexed | null;
 
 export interface RequestOptions {
   method: METHODS;

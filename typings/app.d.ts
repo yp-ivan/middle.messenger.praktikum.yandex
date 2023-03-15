@@ -3,11 +3,12 @@ declare global {
   export type Undefined<T> = T | undefined;
   export type NullObject = Record<string, never>;
   export type KeyValueString = Record<string, string>;
+  export type RecordFunc = Record<string, () => void>;
 
   export type Keys<T extends Record<string, unknown>> = keyof T;
   export type Values<T extends Record<string, unknown>> = T[Keys<T>];
 
-  export type Indexed = { [key: string]: any };
+  export type Indexed = Record<string, any>;
 
   export type AppState = {
     appIsInited: boolean;
@@ -42,7 +43,7 @@ declare global {
       time: string;
       content: string;
     };
-  }
+  };
 
   export type ChatMessage = {
     id: number;
@@ -52,14 +53,13 @@ declare global {
     type: 'message' | 'file';
     content: string;
     file?: string;
-  }
+  };
 
   interface Window {
     store: Store<AppState>;
     router: CoreRouter;
     ws: WSTransport;
   }
-
 }
 
 export {};

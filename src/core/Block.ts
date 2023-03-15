@@ -3,14 +3,13 @@ import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 type Events = Values<typeof Block.EVENTS>;
-type EventFunc = Record<string, () => void>;
 
-export interface BlockClass<P extends Record<string, any>> extends Function {
+export interface BlockClass<P extends Indexed = any> extends Function {
   new (props: P): Block<P>;
   componentName?: string;
 }
 
-export default class Block<P extends Record<string, any> = any> {
+export default class Block<P extends Indexed = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',

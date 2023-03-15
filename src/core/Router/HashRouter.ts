@@ -1,7 +1,7 @@
 import { CoreRouter } from './CoreRouter';
 
 export class HashRouter implements CoreRouter {
-  private routes: Record<string, Function> = {};
+  private routes: RecordFunc = {};
 
   private isStarted = false;
 
@@ -29,7 +29,7 @@ export class HashRouter implements CoreRouter {
     }
   }
 
-  use(hash: string, callback: Function) {
+  use(hash: string, callback: () => void) {
     this.routes[hash] = callback;
     return this;
   }
