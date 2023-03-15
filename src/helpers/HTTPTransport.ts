@@ -5,7 +5,9 @@ export enum METHODS {
   DELETE = 'DELETE'
 }
 
-export type RequestData = Record<string, any> | null;
+export type RequestData = Indexed | null;
+
+type SendData = Document | XMLHttpRequestBodyInit | null;
 
 export interface RequestOptions {
   method: METHODS;
@@ -42,7 +44,7 @@ class HTTPTransport {
       timeout = 5000
     } = options;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<XMLHttpRequest>((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
       let fullUrl = url;
@@ -79,8 +81,7 @@ class HTTPTransport {
       } else if (data && headers['Content-Type'] !== undefined && headers['Content-Type'] === 'application/json') {
         xhr.send(JSON.stringify(data));
       } else {
-        // @ts-ignore
-        xhr.send(data);
+        xhr.send(data as SendData);
       }
     });
   };

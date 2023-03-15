@@ -4,7 +4,6 @@ const express = require('express');
 
 const app = express();
 
-const HOSTNAME = process.env.HOSTNAME || 'localhost';
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -13,6 +12,6 @@ app.use('/*', (_, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.listen(PORT, HOSTNAME, () => {
-  console.log(`App messenger on http://${HOSTNAME}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`App messenger on port ${PORT}!`);
 });

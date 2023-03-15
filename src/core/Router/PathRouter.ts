@@ -1,7 +1,7 @@
 import { CoreRouter } from './CoreRouter';
 
 export class PathRouter implements CoreRouter {
-  private routes: Record<string, Function> = {};
+  private routes: RecordFunc = {};
 
   private isStarted = false;
 
@@ -31,8 +31,8 @@ export class PathRouter implements CoreRouter {
     }
   }
 
-  use(hash: string, callback: Function) {
-    this.routes[hash] = callback;
+  use(pathname: string, callback: () => void) {
+    this.routes[pathname] = callback;
     return this;
   }
 
