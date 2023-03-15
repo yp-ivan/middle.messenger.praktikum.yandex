@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
@@ -20,7 +20,7 @@ export default class Block<P extends Indexed = any> {
 
   public static componentName: string;
 
-  public id = nanoid(6);
+  public id = uuidv4();
 
   protected _element: Nullable<HTMLElement> = null;
   protected props: Readonly<P>;

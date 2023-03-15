@@ -41,6 +41,7 @@
   "homepage": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@types/node": "18.11.18",
+    "@types/uuid": "9.0.1",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
     "css-loader": "6.7.1",
@@ -68,6 +69,6 @@
   "dependencies": {
     "express": "4.18.2",
     "handlebars": "4.7.7",
-    "nanoid": "4.0.0"
+    "uuid": "9.0.0"
   }
 }
