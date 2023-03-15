@@ -18,7 +18,7 @@ export function request<T>({
       data
     }
   )
-    // @ts-ignore
+    // eslint-disable-next-line
     .then((response: XMLHttpRequest) => {
       try {
         const isJson = response.getResponseHeader('content-type')?.includes('application/json');

@@ -9,6 +9,7 @@ import './styles/all.scss';
 
 import * as components from 'components/index';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 Object.values(components).forEach((Component: any) => {
   registerComponent(Component);
 });
