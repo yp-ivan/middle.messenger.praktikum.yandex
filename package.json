@@ -7,9 +7,9 @@
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production --node-env=production",
     "start": "webpack serve",
-    "check:eslint": "npx eslint src",
+    "check:eslint": "npx eslint .",
     "check:stylelint": "npx stylelint src/**/*.scss",
-    "check:test": "echo \"Error: no test specified\" && exit 1",
+    "check:test": "jest",
     "check": "npm-run-all --parallel check:*",
     "prepare": "husky install",
     "build:dev": "npm run dev",
@@ -26,7 +26,31 @@
     "pages": "./src/pages",
     "router": "./src/router",
     "services": "./src/services",
-    "store": "./src/store"
+    "store": "./src/store",
+    "tests": "./src/tests"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "<rootDir>/src/tests/setupEnv.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setup.ts"
+    ],
+    "moduleNameMapper": {
+      "^assets(.*)$": "<rootDir>/src/assets$1",
+      "^api(.*)$": "<rootDir>/src/api$1",
+      "^components(.*)$": "<rootDir>/src/components$1",
+      "^core(.*)$": "<rootDir>/src/core$1",
+      "^data(.*)$": "<rootDir>/src/data$1",
+      "^helpers(.*)$": "<rootDir>/src/helpers$1",
+      "^pages(.*)$": "<rootDir>/src/pages$1",
+      "^router(.*)$": "<rootDir>/src/router$1",
+      "^services(.*)$": "<rootDir>/src/services$1",
+      "^store(.*)$": "<rootDir>/src/store$1",
+      "^tests(.*)$": "<rootDir>/src/tests$1"
+    }
   },
   "repository": {
     "type": "git",
@@ -40,19 +64,28 @@
   },
   "homepage": "https://github.com/yp-ivan/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@testing-library/dom": "9.0.1",
+    "@testing-library/jest-dom": "5.16.5",
+    "@types/jest": "29.4.1",
     "@types/node": "18.11.18",
     "@types/uuid": "9.0.1",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
     "css-loader": "6.7.1",
+    "dotenv": "16.0.3",
     "eslint": "8.33.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "29.5.0",
+    "jest-environment-jsdom": "29.5.0",
     "mini-css-extract-plugin": "2.6.1",
+    "msw": "1.1.0",
     "npm-run-all": "4.1.5",
+    "regenerator-runtime": "0.13.11",
     "sass": "1.59.2",
     "sass-loader": "13.0.2",
     "style-loader": "3.3.1",
@@ -60,11 +93,13 @@
     "stylelint-config-standard": "29.0.0",
     "stylelint-config-standard-scss": "6.1.0",
     "stylelint-scss": "4.3.0",
+    "ts-jest": "29.0.5",
     "ts-loader": "9.4.1",
     "typescript": "4.9.5",
     "webpack": "5.76.1",
     "webpack-cli": "5.0.1",
-    "webpack-dev-server": "4.10.0"
+    "webpack-dev-server": "4.10.0",
+    "whatwg-fetch": "3.6.2"
   },
   "dependencies": {
     "express": "4.18.2",
