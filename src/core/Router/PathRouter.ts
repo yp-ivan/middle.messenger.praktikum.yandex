@@ -31,8 +31,8 @@ export class PathRouter implements CoreRouter {
     }
   }
 
-  use(hash: string, callback: () => void) {
-    this.routes[hash] = callback;
+  use(pathname: string, callback: () => void) {
+    this.routes[pathname] = callback;
     return this;
   }
 
