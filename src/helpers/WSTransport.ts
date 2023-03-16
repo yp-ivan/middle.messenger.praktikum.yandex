@@ -1,4 +1,4 @@
-import config from 'data/config';
+import { config } from 'data/config';
 
 export class WSTransport {
   private _userId = 0;

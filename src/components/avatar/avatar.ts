@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import config from 'data/config';
+import { config } from 'data/config';
 
 import './avatar.scss';
 

@@ -1,5 +1,5 @@
 import HTTPTransport, { METHODS, RequestData, RequestOptions } from 'helpers/HTTPTransport';
-import config from 'data/config';
+import { config } from 'data/config';
 
 interface ApiRequestOptions extends RequestOptions {
   path: string;
