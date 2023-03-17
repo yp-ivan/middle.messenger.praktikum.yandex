@@ -1,5 +1,5 @@
-import { BlockClass } from 'core';
-import * as pages from 'pages';
+import { BlockClass } from 'core/index';
+import * as pages from 'pages/index';
 
 export enum Pages {
   Map = 'map',
@@ -14,7 +14,7 @@ export enum Pages {
 
 }
 
-const map: Record<Pages, BlockClass<any>> = {
+const map: Record<Pages, BlockClass> = {
   [Pages.Map]: pages.MapPage,
   [Pages.Login]: pages.LoginPage,
   [Pages.Register]: pages.RegisterPage,
@@ -26,4 +26,4 @@ const map: Record<Pages, BlockClass<any>> = {
   [Pages.Error500]: pages.Error500Page
 };
 
-export const getPageComponent = (page: Pages): BlockClass<any> => map[page];
+export const getPageComponent = (page: Pages): BlockClass => map[page];

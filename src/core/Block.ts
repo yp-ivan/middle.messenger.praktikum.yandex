@@ -1,16 +1,15 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 type Events = Values<typeof Block.EVENTS>;
-type EventFunc = Record<string, () => void>;
 
-export interface BlockClass<P extends Record<string, any>> extends Function {
+export interface BlockClass<P extends Indexed = any> extends Function {
   new (props: P): Block<P>;
   componentName?: string;
 }
 
-export default class Block<P extends Record<string, any> = any> {
+export default class Block<P extends Indexed = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -21,7 +20,7 @@ export default class Block<P extends Record<string, any> = any> {
 
   public static componentName: string;
 
-  public id = nanoid(6);
+  public id = uuidv4();
 
   protected _element: Nullable<HTMLElement> = null;
   protected props: Readonly<P>;
@@ -30,7 +29,7 @@ export default class Block<P extends Record<string, any> = any> {
   eventBus: () => EventBus<Events>;
 
   protected state: any = {};
-  protected refs: { [key: string]: HTMLElement } = {};
+  protected refs: { [key: string]: Block } = {};
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>();
@@ -132,6 +131,14 @@ export default class Block<P extends Record<string, any> = any> {
 
     Object.assign(this.state, nextState);
   };
+
+  getProps() {
+    return this.props;
+  }
+
+  getRefs() {
+    return this.refs;
+  }
 
   get element() {
     return this._element;

@@ -1,4 +1,4 @@
-import { Pages } from 'helpers';
+import { Pages } from 'helpers/index';
 
 export const routes = [
   {

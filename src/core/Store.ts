@@ -11,7 +11,7 @@ export type Action<State> = (
   payload: any,
 ) => void;
 
-export class Store<State extends Record<string, any>> extends EventBus {
+export class Store<State extends Indexed> extends EventBus {
   private state: State = {} as State;
 
   constructor(defaultState: State) {

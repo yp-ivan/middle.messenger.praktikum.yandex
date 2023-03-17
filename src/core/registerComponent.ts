@@ -1,24 +1,19 @@
 import Handlebars, { HelperOptions } from 'handlebars';
 import Block from './Block';
 
-interface BlockConstructable<Props = any> {
+interface BlockConstructable<Props> {
   new(props: Props): Block;
   componentName: string;
 }
 
-const registerComponent = <Props extends Record<string, any> = any>(Component: BlockConstructable<Props>) => {
+const registerComponent = <Props extends Indexed>(Component: BlockConstructable<Props>) => {
   Handlebars.registerHelper(
     Component.componentName,
     function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
-      if (!data.root.children) {
-        data.root.children = {};
-      }
+      let { children = {}, refs = {} } = data.root;
 
-      if (!data.root.refs) {
-        data.root.refs = {};
-      }
-
-      const { children, refs } = data.root;
+      if (!children) children = {};
+      if (!refs) refs = {};
 
       /**
        * Костыль для того, чтобы передавать переменные
@@ -26,7 +21,7 @@ const registerComponent = <Props extends Record<string, any> = any>(Component: B
        */
       (Object.keys(hash) as any).forEach((key: keyof Props) => {
         if (this[key] && typeof this[key] === 'string') {
-          hash[key] = hash[key].replace(new RegExp(`{{${key}}}`, 'i'), this[key]);
+          hash[key] = hash[key].replace(new RegExp(`{{${key as string}}}`, 'i'), this[key]);
         }
       });
 

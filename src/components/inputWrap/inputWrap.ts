@@ -3,7 +3,7 @@ import Block from 'core/Block';
 import { ValidateType } from 'helpers/validate/validateType';
 import { validateControl } from 'helpers/validate/validateForm';
 import { InputType } from 'components/input';
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 
 import './inputWrap.scss';
 
@@ -26,7 +26,7 @@ export class InputWrap extends Block<InputWrapProps> {
 
   constructor({ id, ...props }: InputWrapProps) {
     super({
-      id: (id !== undefined) ? id : nanoid(6),
+      id: (id !== undefined) ? id : uuidv4(),
       ...props,
       onInput: (e: Event) => {
         this.validate(e);
@@ -46,7 +46,7 @@ export class InputWrap extends Block<InputWrapProps> {
     const rule = this.props.validateRule;
     if (rule === undefined) return;
     const error = validateControl([{ rule, value }]);
-    this.refs.errorRef.setProps({
+    (this.refs.errorRef as unknown as Block).setProps({
       text: error,
       submitted: false
     });

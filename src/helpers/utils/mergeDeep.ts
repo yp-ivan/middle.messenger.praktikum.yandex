@@ -1,8 +1,7 @@
 export const mergeDeep = (lhs: Indexed, rhs: Indexed): Indexed => {
   for (const p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
-      continue;
-    }
+    // eslint-disable-next-line no-prototype-builtins
+    if (!rhs.hasOwnProperty(p)) continue;
 
     try {
       if (rhs[p].constructor === Object) {

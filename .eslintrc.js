@@ -20,7 +20,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: '2017',
     sourceType: 'module',
-    project: ['./tsconfig.json']
+    project: ['./tsconfig.json'],
+    tsconfigRootDir: __dirname
   },
   plugins: [
     'import',
@@ -31,22 +32,28 @@ module.exports = {
     'no-console': 0,
     'linebreak-style': 0,
     'max-len': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/comma-dangle': ['error', 'never'],
     '@typescript-eslint/quotes': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-use-before-define': ['warn'],
+    '@typescript-eslint/ban-ts-comment': 'warn',
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'warn',
+    'import/first': 'off',
     'no-restricted-exports': 'off',
+    'no-restricted-syntax': 'warn',
     'object-curly-newline': 'off',
     'no-underscore-dangle': 'off',
-    'import/first': 'off',
     'no-plusplus': 'off',
     'no-alert': 'off',
     'no-use-before-define': 'off',
-    'arrow-body-style': ['warn']
+    'arrow-body-style': 'off',
+    'no-continue': 'warn',
+    'no-param-reassign': 'warn'
   }
 }

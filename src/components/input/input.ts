@@ -1,5 +1,5 @@
 import Block from 'core/Block';
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 
 import './input.scss';
 
@@ -37,7 +37,7 @@ export class Input extends Block<InputProps> {
   constructor({ onInput, onBlur, onFocus, onChange, type = 'text', id, ...props }: InputProps) {
     super({
       type,
-      id: (id !== undefined) ? id : nanoid(6),
+      id: (id !== undefined) ? id : uuidv4(),
       ...props,
       events: {
         input: onInput,
